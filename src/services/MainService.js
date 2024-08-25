@@ -6,7 +6,7 @@ const REST_API_URL = `${REST_API_BASE_URL}/main`
 
 export const getAllPosts = () => axios.get(REST_API_URL);
 
-export const getPostById = (id) => axios.get(`${REST_API_URL}/${id}`, id);  
+export const getPostById = (id) => axios.get(`${REST_API_URL}/${id}`);  
 
 export const createPost = (post) => axios.post(`${REST_API_URL}/write`, post);
 
@@ -17,6 +17,6 @@ export const updatePost = (id, post) => axios.put(`${REST_API_URL}/update/${id}`
 });
 
         
-export const deletePost = (id) => axios.delete(`${REST_API_URL}/${id}`, id);
+export const deletePost = (id) => axios.delete(`${REST_API_URL}/${id}`);
     
     
