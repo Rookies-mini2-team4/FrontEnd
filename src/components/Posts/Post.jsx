@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './Post.css'; // Post 컴포넌트의 스타일을 정의한 CSS 파일
+import 'src/styles/Post.css'; // Post 컴포넌트의 스타일을 정의한 CSS 파일
 
 const Post = ({ post }) => {
     const navigate = useNavigate();

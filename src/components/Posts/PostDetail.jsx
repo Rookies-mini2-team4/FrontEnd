@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getPostById, deletePost } from '../services/MainService';
-import { getCommentById, createComment, updateComment, deleteComment } from '../services/CommentService';
-import ConfirmModal from './ConfirmModal';
+import { getPostById, deletePost } from '../../services/MainService';
+import { getCommentById, createComment, updateComment, deleteComment } from '../../services/CommentService';
+import ConfirmModal from '../Modal/ConfirmModal';
 
 const PostDetail = () => {
     const { id } = useParams(); // URL에서 글 ID를 가져옵니다

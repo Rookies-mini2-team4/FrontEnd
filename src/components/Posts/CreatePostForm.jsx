@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { createPost } from '../services/MainService'; // 글을 생성하는 API 호출 함수
+import { createPost } from '../../services/MainService'; // 글을 생성하는 API 호출 함수
 
 const CreatePostForm = ({ onClose }) => {
     const [contents, setContents] = useState('');

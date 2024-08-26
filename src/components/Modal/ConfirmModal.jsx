@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './ConfirmModal.css'; // 필요한 스타일을 정의합니다.
+import 'src/styles/ConfirmModal.css'; // 필요한 스타일을 정의
 
 const ConfirmModal = ({ show, onClose, onConfirm }) => {
     if (!show) return null;

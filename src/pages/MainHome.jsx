@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllPosts } from '../services/MainService';
-import Post from './Post';
-import './MainHome.css';
+import Post from '../components/Posts/Post';
+import '../styles/MainHome.css';
 
 const MainHome = () => {
     const [posts, setPosts] = useState([]); // 초기값을 빈 배열로 설정
