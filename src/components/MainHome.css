@@ -1,0 +1,14 @@
+.main-home {
+    width: 100%; /* 부모 요소의 너비를 100% 차지 */
+    max-width: 800px; /* 원하는 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.post {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}

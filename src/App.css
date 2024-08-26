@@ -1,0 +1,22 @@
+.app {
+  display: flex; /* 사이드바와 콘텐츠를 가로로 배치 */
+  height: 100vh; /* 화면 전체 높이를 사용 */
+}
+
+.sidebar {
+  width: 250px; /* 사이드바의 고정 너비 */
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  height: 100%; /* 사이드바가 화면 전체 높이를 채우도록 설정 */
+}
+
+.content {
+  flex-grow: 1; /* 나머지 공간을 차지하도록 설정 */
+  padding: 20px;
+  background-color: #f0f2f5;
+  overflow-y: auto; /* 내용이 많을 때 스크롤 가능 */
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  align-items: flex-start; /* 상단에서 시작 */
+}
