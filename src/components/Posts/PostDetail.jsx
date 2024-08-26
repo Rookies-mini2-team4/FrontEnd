@@ -32,23 +32,6 @@ const PostDetail = () => {
     useEffect(() => {
         fetchPostAndComments(); // 페이지가 로드될 때 게시글 및 댓글 데이터를 가져옵니다
     }, [id]); // id가 변경될 때마다 실행
-    // useEffect(() => {
-    //     const fetchPostAndComments = async () => {
-    //         try {
-    //             const postResponse = await getPostById(id);
-    //             setPost(postResponse.data);
-    
-    //             const commentResponse = await getCommentById(id);
-    //             const fetchedComments = commentResponse.data.comments || []; // 응답이 없을 경우 빈 배열 설정
-    //             setComments(Array.isArray(fetchedComments) ? fetchedComments : []); // 배열 형태로 설정
-    //         } catch (error) {
-    //             console.error("Failed to fetch post or comments:", error);
-    //             setComments([]); // 오류 발생 시 빈 배열로 초기화
-    //         }
-    //     };
-    //     fetchPostAndComments();
-    // }, [id]);
-    
 
     const handleDeletePost = async () => {
         await deletePost(id);
@@ -117,10 +100,10 @@ const PostDetail = () => {
             {post.photos && <img src={post.photos} alt="Post" />}
             
             <div className="post-comments">
-                <h4>댓글:</h4>
+                <h4>댓글: </h4>
                 <ul>
-                    {comments.map((comment) => (
-                        <li key={comment.id}>
+                    {post.text.map((comment, index) => (
+                        <li key={index}>
                             {comment.text}
                             <button onClick={() => handleEditComment(comment.id)}>수정</button>
                             <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
