@@ -21,15 +21,34 @@ const PostDetail = () => {
             setPost(postResponse.data);
 
             const commentResponse = await getCommentById(id);
-            setComments(commentResponse.data || []); // 응답 데이터가 배열인지 확인 후 설정
+            const fetchedComments = commentResponse.data.comments || [];
+            setComments(Array.isArray(fetchedComments) ? fetchedComments : []);
         } catch (error) {
             console.error("Failed to fetch post or comments:", error);
+            setComments([]);
         }
     };
 
     useEffect(() => {
         fetchPostAndComments(); // 페이지가 로드될 때 게시글 및 댓글 데이터를 가져옵니다
     }, [id]); // id가 변경될 때마다 실행
+    // useEffect(() => {
+    //     const fetchPostAndComments = async () => {
+    //         try {
+    //             const postResponse = await getPostById(id);
+    //             setPost(postResponse.data);
+    
+    //             const commentResponse = await getCommentById(id);
+    //             const fetchedComments = commentResponse.data.comments || []; // 응답이 없을 경우 빈 배열 설정
+    //             setComments(Array.isArray(fetchedComments) ? fetchedComments : []); // 배열 형태로 설정
+    //         } catch (error) {
+    //             console.error("Failed to fetch post or comments:", error);
+    //             setComments([]); // 오류 발생 시 빈 배열로 초기화
+    //         }
+    //     };
+    //     fetchPostAndComments();
+    // }, [id]);
+    
 
     const handleDeletePost = async () => {
         await deletePost(id);
