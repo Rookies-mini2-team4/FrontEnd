@@ -3,7 +3,7 @@ import 'src/styles/Login.css'; // CSS 파일을 불러옵니다.
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 
 function Login({ onLogin }) {
-  const [username, setUsername] = useState('');
+  const [userId, setuserId] = useState('');  // username 을 userId 로 바꿈
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate(); // useNavigate 훅 초기화
@@ -17,7 +17,7 @@ function Login({ onLogin }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userName: username, password: password }),
+        body: JSON.stringify({ userId: userId, password: password }),
       });
 
       if (!response.ok) {
@@ -59,8 +59,8 @@ function Login({ onLogin }) {
         <div className="form-group">
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={userId}
+            onChange={(e) => setuserId(e.target.value)}
             placeholder="ID를 입력하세요."
           />
         </div>
