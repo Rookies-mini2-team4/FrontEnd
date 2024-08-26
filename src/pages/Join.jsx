@@ -173,7 +173,7 @@ export default function Join() {
         }
 
         try {
-            const response = await axios.post('http://localhost:8081/api/join/register', {
+            const response = await axios.post('http://localhost:8080/api/join/register', {
                 userId: userid, // assuming userId is same as username
                 userName: name,
                 password: password,
