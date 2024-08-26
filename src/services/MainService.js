@@ -44,7 +44,6 @@ export const updatePost = (id, post) => {
   });
 };
 
-
 //export const deletePost = (id) => axios.delete(`${REST_API_URL}/${id}`);
 export const deletePost = (id) => {
   const token = localStorage.getItem("jwtToken");
