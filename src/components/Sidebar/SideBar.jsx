@@ -102,7 +102,7 @@ const Sidebar = ({ isLoggedIn }) => {
                 <button onClick={() => setShowCreateModal(true)}>만들기</button>
               </li>
               <li>
-                <NavLink to="/api/profile">프로필</NavLink>
+                <NavLink to="/api/myprofile">프로필</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout}>로그아웃</button>

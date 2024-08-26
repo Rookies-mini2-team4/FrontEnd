@@ -3,7 +3,7 @@ import 'src/styles/Login.css'; // CSS 파일을 불러옵니다.
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 
 function Login({ onLogin }) {
-  const [username, setUsername] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate(); // useNavigate 훅 초기화
@@ -12,12 +12,12 @@ function Login({ onLogin }) {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch('http://localhost:8081/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userName: username, password: password }),
+        body: JSON.stringify({ userName: userName, password: password }),
       });
 
       if (!response.ok) {
@@ -59,8 +59,8 @@ function Login({ onLogin }) {
         <div className="form-group">
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
             placeholder="ID를 입력하세요."
           />
         </div>
