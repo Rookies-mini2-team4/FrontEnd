@@ -8,7 +8,7 @@ import ExtractIdFromToken from '../services/ExtractIdFromToken';
 import 'src/styles/Profile.css'
 
 const Profile = () => {
-    const token = localStorage.getItem('jwtToken'); // 로컬 스토리지에서 JWT 토큰 가져옴
+    const token = localStorage.getItem('jwtToken');
 
     const [currentId, setCurrentId] = useState(null);
     const currentUserName = ExtractIdFromToken(token);
@@ -21,17 +21,18 @@ const Profile = () => {
             .catch((error) => {
                 console.error(error);
             });
-    }, [currentUserName]);
+    });
+    
+
+    let { id } = useParams();
+    if (id===undefined) id = currentId;
     
     useEffect(() => {
         if (currentId !== null) {
             catchUserInfo();
         }
-    }, [currentId]);
+    }, [currentId,id]);
 
-    let { id } = useParams();
-    if (id===undefined) id = currentId;
-    
     const [user, setUser] = useState({});
     const [photos, setPhotos] = useState([]);
     const [followers, setFollowers] = useState([]);
@@ -74,7 +75,7 @@ const Profile = () => {
     }
 
     const buttonType = () => {
-        if(currentId===id){
+        if(currentId==id){
             return <button className='update-button'>
                     <Link to={`/api/updateProfile`}>update profile</Link>
                     </button>
@@ -88,7 +89,16 @@ const Profile = () => {
     const handleFollow = () => {
         const follow = { followerId : currentId, followingId : id };
         followUser(follow).then(() => {
-
+            getFollower(id).then((response) => {
+                setFollowers(response.data);
+            }).catch(error => {
+                console.error(error);
+            })
+            getFollowerNum(id).then((response) => {
+                setFollowerNum(response.data);
+            }).catch(error => {
+                console.error(error);
+            })
         }).catch(error => {
             console.error(error);
         })
@@ -97,7 +107,16 @@ const Profile = () => {
     const handleUnfollow = () => {
         const unfollow = { followerId : currentId, followingId : id };
         unfollowUser(unfollow).then(() => {
-
+            getFollowing(id).then((response) => {
+                setFollowings(response.data);
+            }).catch(error => {
+                console.error(error);
+            })
+            getFollowingNum(id).then((response) => {
+                setFollowingNum(response.data);
+            }).catch(error => {
+                console.error(error);
+            })
         }).catch(error => {
             console.error(error);
         })
@@ -118,7 +137,7 @@ const Profile = () => {
                         </button>
                         <div className="dropdown-content">
                             {followers.map(follower => (
-                                <Link to={`/${currentId}/user/${follower.followerId}`} key={follower.id}>
+                                <Link to={`/api/profile/${follower.followerId}`} key={follower.id}>
                                 {follower.followerUserId}
                                 </Link>
                             ))}
@@ -130,7 +149,7 @@ const Profile = () => {
                         </button>
                         <div className="dropdown-content">
                             {followings.map(following => (
-                                <Link to={`/${currentId}/user/${following.followingId}`} key={following.id}>
+                                <Link to={`/api/profile/${following.followingId}`} key={following.id}>
                                 {following.followingUserId}
                                 </Link>
                             ))}
