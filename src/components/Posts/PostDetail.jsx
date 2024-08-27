@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { getPostById, deletePost } from '../../services/MainService';
 import { getCommentById, createComment, updateComment, deleteComment } from '../../services/CommentService';
 import ConfirmModal from '../Modal/ConfirmModal';
+//import '@/styles/PostDetail.css'
 
 const PostDetail = () => {
-    const { id } = useParams(); // URL에서 글 ID를 가져옵니다
+    const { id } = useParams(); // URL에서 글 ID를 가져오기
     const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]); // 댓글 상태 추가

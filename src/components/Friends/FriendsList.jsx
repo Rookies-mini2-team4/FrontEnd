@@ -4,7 +4,7 @@ const FriendsList = ({ userId }) => {
     const [friends, setFriends] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/user/${userId}/friends`)
+        fetch(`http://localhost:8081/api/user/${userId}/friends`)
             .then(response => response.json())
             .then(data => setFriends(data));
     }, [userId]);

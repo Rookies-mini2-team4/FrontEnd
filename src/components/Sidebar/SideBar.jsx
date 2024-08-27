@@ -63,9 +63,9 @@
 
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Modal from '../Modal/Modal'; // 모달 컴포넌트를 가져옵니다.
+import Modal from '../Modal/Modal'; // 모달 컴포넌트
 import CreatePostForm from '../Posts/CreatePostForm'; 
-import 'src/styles/SideBar.css';
+import "@/styles/Sidebar.css";
 
 const Sidebar = ({ isLoggedIn }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -102,7 +102,7 @@ const Sidebar = ({ isLoggedIn }) => {
                 <button onClick={() => setShowCreateModal(true)}>만들기</button>
               </li>
               <li>
-                <NavLink to="/api/profile">프로필</NavLink>
+                <NavLink to="/api/myprofile">프로필</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout}>로그아웃</button>
