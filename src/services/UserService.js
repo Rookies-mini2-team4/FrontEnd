@@ -87,9 +87,10 @@ export const updateProfile = (id, formData) => {
 export const getProfileImg = (id) => {
   const token = localStorage.getItem("jwtToken");
   return axios.get(REST_API_URL + '/profileImg/' + id, {
+    responseType: 'arraybuffer',
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
+      Authorization: `Bearer ${token}`,
     },
   });
 };

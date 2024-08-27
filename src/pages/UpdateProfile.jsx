@@ -71,19 +71,20 @@ const UpdateProfile = () => {
 
     useEffect(() => {
         let imageUrl;
-
-        getProfileImg(currentId).then((response) => {
-            if (response===null) setImageSrc('/profileImages/defaultProfile.png')
-            else {
-                const blob = response.blob();
-                imageUrl = URL.createObjectURL(blob);
-                setImageSrc(imageUrl);
-            }
-            
-        }).catch(error => {
-            console.error(error);
-        });
-
+        if (currentId!=null){
+            getProfileImg(currentId).then((response) => {
+                console.log(response);
+                if (response.data.byteLength==0) setImageSrc('/profileImages/defaultProfile.png')
+                else {
+                    const blob = new Blob([response.data], { type: 'image/jpeg' })
+                    imageUrl = URL.createObjectURL(blob);
+                    setImageSrc(imageUrl);
+                }
+                
+            }).catch(error => {
+                console.error(error);
+            });
+        }
     }, [currentId, user]);
 
 
@@ -103,6 +104,7 @@ const UpdateProfile = () => {
                     accept="image/*"
                     onChange={handleFileChange}
                 />
+                
             </div>
                   
             <form onSubmit={handleSubmit}>
