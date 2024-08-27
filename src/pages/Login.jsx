@@ -3,7 +3,7 @@ import 'src/styles/Login.css'; // CSS 파일을 불러옵니다.
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 
 function Login({ onLogin }) {
-  const [userId, setuserId] = useState('');  // username 을 userId 로 바꿈
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate(); // useNavigate 훅 초기화
@@ -60,7 +60,7 @@ function Login({ onLogin }) {
           <input
             type="text"
             value={userId}
-            onChange={(e) => setuserId(e.target.value)}
+            onChange={(e) => setUserId(e.target.value)}
             placeholder="ID를 입력하세요."
           />
         </div>
