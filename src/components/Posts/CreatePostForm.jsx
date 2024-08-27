@@ -47,7 +47,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createPost } from '../../services/MainService'; // 글을 생성하는 API 호출 함수
-import 'src/styles/Modal.css';
 
 const CreatePostForm = ({ onClose }) => {
     const [contents, setContents] = useState('');
@@ -110,7 +109,7 @@ const CreatePostForm = ({ onClose }) => {
 };
 
 CreatePostForm.propTypes = {
-    onClose: PropTypes.func.isRequired, // onClose prop이 필수임을 명시합니다.
+    onClose: PropTypes.func.isRequired, // onClose prop이 필수임을 명시
 };
 
 export default CreatePostForm;

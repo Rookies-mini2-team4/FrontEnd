@@ -18,23 +18,14 @@ export const getPostById = (id) => {
 };
 
 //export const createPost = (post) => axios.post(`${REST_API_URL}/write`, post);
-// export const createPost = (post) => {
-//   const token = localStorage.getItem("jwtToken");
-//   return axios.post(`${REST_API_URL}/write`, post, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
-//     },
-//   });
-// };
-export const createPost = (formData) => {
-    const token = localStorage.getItem('jwtToken');
-    return axios.post(`${REST_API_BASE_URL}/main/write`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
-        },
-    });
+export const createPost = (post) => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.post(`${REST_API_URL}/write`, post, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
+    },
+  });
 };
 
 
@@ -54,7 +45,6 @@ export const updatePost = (id, post) => {
     },
   });
 };
-
 
 //export const deletePost = (id) => axios.delete(`${REST_API_URL}/${id}`);
 export const deletePost = (id) => {
