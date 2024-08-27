@@ -24,8 +24,15 @@ function Login({ onLogin }) {
   
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed');
-      }
+        // 서버에서 반환한 에러 메시지에 따라 적절한 에러 문구를 설정
+          if (errorData.message === 'User not found with userId: ') {
+              throw new Error('일치하는 ID가 없습니다.');
+          } else if (errorData.message === '자격 증명에 실패하였습니다.') {
+              throw new Error('비밀번호가 일치하지 않습니다.');
+          } else {
+              throw new Error(errorData.message || 'Login failed');
+          }
+        };
   
       const data = await response.json();
   
@@ -45,7 +52,7 @@ function Login({ onLogin }) {
       }
     } catch (error) {
       console.error('Login failed:', error);
-      setMessage(`Login failed: ${error.message}`);
+      setMessage(`${error.message}`);
     }
   };
   
