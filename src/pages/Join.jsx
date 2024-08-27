@@ -372,7 +372,7 @@ export default function Join() {
                     <input
                         type="text"
                         name="userid"
-                        placeholder="이름을 입력하세요."
+                        placeholder="ID를 입력하세요."
                         value={userid}
                         onChange={(e) => setuserId(e.target.value)}
                     />
@@ -405,7 +405,7 @@ export default function Join() {
                     <input
                         type="text"
                         name="name"
-                        placeholder="ID를 입력하세요."
+                        placeholder="이름을 입력하세요."
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
