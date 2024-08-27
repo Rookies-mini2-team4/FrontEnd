@@ -78,7 +78,7 @@ export const updateProfile = (id, formData) => {
   const token = localStorage.getItem("jwtToken");
   return axios.patch(REST_API_URL + '/' + id, formData, {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
     },
   });

@@ -16,11 +16,12 @@ export const followUser = (follow) => {
 
   export const unfollowUser = (unfollow) => {
     const token = localStorage.getItem("jwtToken");
-    return axios.delete(REST_API_URL, unfollow, {
+    return axios.delete(REST_API_URL, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
       },
-    });
+      data:unfollow,
+    } );
   };
 

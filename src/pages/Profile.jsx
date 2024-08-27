@@ -9,7 +9,7 @@ import 'src/styles/Profile.css'
 
 const Profile = () => {
     const token = localStorage.getItem('jwtToken');
-
+    // 로그인 방법 바뀌고 나서 수정해야됨!!
     const [currentId, setCurrentId] = useState(null);
     const currentUserName = ExtractIdFromToken(token);
 
@@ -80,7 +80,7 @@ const Profile = () => {
                     <Link to={`/api/updateProfile`}>update profile</Link>
                     </button>
         }else if(followers.some(follower => follower.followerId == currentId)){
-            return <button className='unfollow-button' onClick={handleUnfollow}>unfollow</button>
+            return <button className='follow-button' onClick={handleUnfollow}>unfollow</button>
         }else{
             return <button className='follow-button' onClick={handleFollow}>follow</button>
         }
@@ -99,6 +99,7 @@ const Profile = () => {
             }).catch(error => {
                 console.error(error);
             })
+
         }).catch(error => {
             console.error(error);
         })
@@ -107,13 +108,13 @@ const Profile = () => {
     const handleUnfollow = () => {
         const unfollow = { followerId : currentId, followingId : id };
         unfollowUser(unfollow).then(() => {
-            getFollowing(id).then((response) => {
-                setFollowings(response.data);
+            getFollower(id).then((response) => {
+                setFollowers(response.data);
             }).catch(error => {
                 console.error(error);
             })
-            getFollowingNum(id).then((response) => {
-                setFollowingNum(response.data);
+            getFollowerNum(id).then((response) => {
+                setFollowerNum(response.data);
             }).catch(error => {
                 console.error(error);
             })

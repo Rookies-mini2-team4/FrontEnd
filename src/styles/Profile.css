@@ -62,23 +62,14 @@
     gap: 10px;
 }
 
-.follow-button {
+.follow-button,
+.update-button {
     padding: 5px 15px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-}
-
-.follow-button.follow {
-    background-color: #0095f6;
-    color: white;
-}
-
-.follow-button.unfollow {
-    background-color: #efefef;
-    color: black;
 }
 
 .dropdown{
