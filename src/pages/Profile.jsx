@@ -11,10 +11,10 @@ const Profile = () => {
     const token = localStorage.getItem('jwtToken');
     // 로그인 방법 바뀌고 나서 수정해야됨!!
     const [currentId, setCurrentId] = useState(null);
-    const currentUserName = ExtractIdFromToken(token);
+    const currentUserId = ExtractIdFromToken(token);
 
     useEffect(() => {
-        getUserId(currentUserName)
+        getUserId(currentUserId)
             .then((response) => {
                 setCurrentId(response.data);
             })

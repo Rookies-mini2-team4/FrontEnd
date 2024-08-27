@@ -63,11 +63,8 @@ const UpdateProfile = () => {
         if (file) { formData.append('file', file); }
 
         updateProfile(currentId, formData).then((response) => {
-            for (let [key, value] of formData.entries()) {
-                console.log(`${key}: ${value}`);
-            }
             setUser(response.data);
-            response && response === 200 && navigate(`/api/myprofile`);
+            navigate(`/api/myprofile`);
         }).catch(error => {
             console.error(error);
         });

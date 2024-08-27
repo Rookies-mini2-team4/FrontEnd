@@ -14,9 +14,9 @@ export const getUserInfo = (id) => {
     });
 };
 
-export const getUserId = (userName) => {
+export const getUserId = (userId) => {
   const token = localStorage.getItem("jwtToken");
-  return axios.get(REST_API_URL + '/nameToId/' + userName, {
+  return axios.get(REST_API_URL + '/nameToId/' + userId, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
