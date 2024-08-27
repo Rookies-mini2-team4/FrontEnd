@@ -81,6 +81,9 @@ function App() {
                             path="/api/messages" 
                             element={<ProtectedRoute element={MessagePage} />} 
                         />
+                        <Route path="/api/myprofile" element={<Profile />} />
+                        <Route path="/api/profile/:id" element={<Profile />} />
+                        <Route path="/api/updateProfile" element={<UpdateProfile />} />
                     </Routes>
                 </div>
             </div>
