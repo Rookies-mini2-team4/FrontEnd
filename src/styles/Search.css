@@ -1,9 +1,10 @@
 /* Container styling */
 .user-search {
-    max-width: 600px;
+    max-width: 500px;
+    width: 70%;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fafafa;
+    background-color: #ffffff;
     border: 1px solid #dbdbdb;
     border-radius: 12px;
     text-align: center;
@@ -22,8 +23,8 @@
     width: 85%;
     padding: 10px;
     border: 1px solid #dbdbdb;
-    border-radius: 30px;
-    background-color: #efefef;
+    border-radius: 5px;
+    background-color: #fff;
     font-size: 14px;
     color: #262626;
     outline: none;
@@ -31,4 +32,50 @@
 }
 
 .user-search input:focus {
-    background
+    background-color: #f3f3f3;
+}
+
+/* User list container */
+.user-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Link wrapper for user item */
+.user-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* User item styling */
+.user-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.user-item:hover {
+    background-color: #f1f1f1;
+}
+/* User name and details */
+.user-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #262626;
+}
+
+.user-item p strong {
+    font-weight: 600;
+}
+
+/* No users found message */
+.user-list p {
+    font-size: 14px;
+    color: #8e8e8e;
+}

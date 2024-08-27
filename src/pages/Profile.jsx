@@ -155,11 +155,13 @@ const Profile = () => {
                             followers <strong>{followerNum}</strong>
                         </button>
                         <div className="dropdown-content">
-                            {followers.map(follower => (
-                                <Link to={`/api/profile/${follower.followerId}`} key={follower.id}>
-                                {follower.followerUserId}
-                                </Link>
-                            ))}
+                            {followers.length > 0 ? (
+                                followers.map(follower => (
+                                    <Link to={`/api/profile/${follower.followerId}`} key={follower.id}>
+                                    {follower.followerUserId}
+                                    </Link>
+                                ))
+                            ) : (<p>No follower</p>)}
                         </div>
                     </div>
                     <div className="dropdown">
@@ -167,11 +169,13 @@ const Profile = () => {
                             folloing <strong>{followingNum}</strong>
                         </button>
                         <div className="dropdown-content">
-                            {followings.map(following => (
+                            {followings.length > 0 ? (
+                            followings.map(following => (
                                 <Link to={`/api/profile/${following.followingId}`} key={following.id}>
                                 {following.followingUserId}
                                 </Link>
-                            ))}
+                            ))
+                        ) : (<p>No following</p>)}
                         </div>
                     </div>
                     <p className="profile-name">{user.userName}</p>
