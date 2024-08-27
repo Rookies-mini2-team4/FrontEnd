@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { getUserInfo, getUserId, getPhotos, getFollower, getFollowing, getFollowerNum, getFollowingNum } from 'src/services/UserService'
-import { followUser, unfollowUser } from 'src/services/FollowService'
+import { getUserInfo, getUserId, getPhotos, getFollower, getFollowing, getFollowerNum, getFollowingNum } from '@/services/UserService'
+import { followUser, unfollowUser } from '@/services/FollowService'
 //import IdFromToken from '../services/IdFromToken.jsx';
 import ExtractIdFromToken from '../services/ExtractIdFromToken';
-import 'src/styles/Profile.css'
+import '@/styles/Profile.css'
 
 const Profile = () => {
     const token = localStorage.getItem('jwtToken');
