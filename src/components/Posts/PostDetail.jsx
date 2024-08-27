@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getPostById, deletePost } from '../../services/MainService';
 import { getCommentById, createComment, updateComment, deleteComment } from '../../services/CommentService';
 import ConfirmModal from '../Modal/ConfirmModal';
+//import '@/styles/PostDetail.css'
 
 const PostDetail = () => {
     const { id } = useParams(); // URL에서 글 ID를 가져옵니다
@@ -21,9 +22,11 @@ const PostDetail = () => {
             setPost(postResponse.data);
 
             const commentResponse = await getCommentById(id);
-            setComments(commentResponse.data || []); // 응답 데이터가 배열인지 확인 후 설정
+            const fetchedComments = commentResponse.data.comments || [];
+            setComments(Array.isArray(fetchedComments) ? fetchedComments : []);
         } catch (error) {
             console.error("Failed to fetch post or comments:", error);
+            setComments([]);
         }
     };
 
@@ -98,10 +101,10 @@ const PostDetail = () => {
             {post.photos && <img src={post.photos} alt="Post" />}
             
             <div className="post-comments">
-                <h4>댓글:</h4>
+                <h4>댓글: </h4>
                 <ul>
-                    {comments.map((comment) => (
-                        <li key={comment.id}>
+                    {post.text.map((comment, index) => (
+                        <li key={index}>
                             {comment.text}
                             <button onClick={() => handleEditComment(comment.id)}>수정</button>
                             <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
