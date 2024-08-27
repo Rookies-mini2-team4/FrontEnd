@@ -19,6 +19,7 @@ export const getPostById = (id) => {
 
 //export const createPost = (post) => axios.post(`${REST_API_URL}/write`, post);
 export const createPost = (formData) => {
+
   const token = localStorage.getItem("jwtToken");
   return axios.post(`${REST_API_BASE_URL}/main/write`, formData, {
     headers: {
