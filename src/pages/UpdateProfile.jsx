@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getUserInfo, getUserId,updateProfile } from 'src/services/UserService'
+import { getUserInfo, getUserId,updateProfile,getProfileImg } from 'src/services/UserService'
 import ExtractIdFromToken from '../services/ExtractIdFromToken';
 import '../styles/UpdateProfile.css';
 
@@ -45,13 +45,12 @@ const UpdateProfile = () => {
         //console.log(user);
     };
 
+    const [imageSrc, setImageSrc] = useState(null);
+
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
-        getUserInfo(currentId).then((response) => {
-            setUser(response.data)
-        }).catch(error => {
-            console.error(error);
-        })
+        const fileUrl = URL.createObjectURL(e.target.files[0]);
+        setImageSrc(fileUrl);
     };
 
     const navigate = useNavigate();
@@ -70,13 +69,30 @@ const UpdateProfile = () => {
         });
     };
 
+    useEffect(() => {
+        let imageUrl;
+
+        getProfileImg(currentId).then((response) => {
+            if (response===null) setImageSrc('/profileImages/defaultProfile.png')
+            else {
+                const blob = response.blob();
+                imageUrl = URL.createObjectURL(blob);
+                setImageSrc(imageUrl);
+            }
+            
+        }).catch(error => {
+            console.error(error);
+        });
+
+    }, [currentId, user]);
+
 
     return (
         <div className="update-profile">
             <h2>Update Profile</h2>
             <div className="profile-image">
                 <img
-                        src={'/profileImages/defaultProfile.png'}
+                        src={imageSrc}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
                 <label htmlFor="profileImage">change profile image</label>
