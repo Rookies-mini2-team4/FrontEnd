@@ -41,6 +41,8 @@ import Join from 'src/pages/Join';
 import MessagePage from './components/Chat/MessagePage';
 import CreatePostForm from './components/Posts/CreatePostForm'; // 글 작성 폼 추가
 import ProtectedRoute from './routes/ProtectedRoute'; // ProtectedRoute 가져오기
+import Profile from "src/pages/Profile";
+import UpdateProfile from "src/pages/UpdateProfile";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -65,7 +65,7 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal'; // 모달 컴포넌트를 가져옵니다.
 import CreatePostForm from '../Posts/CreatePostForm'; 
-import 'src/styles/SideBar.css';
+import "@/styles/Sidebar.css";
 
 const Sidebar = ({ isLoggedIn }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);

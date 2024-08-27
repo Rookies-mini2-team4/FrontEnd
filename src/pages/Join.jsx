@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';  
 import { useNavigate } from 'react-router-dom';
-import 'src/styles/Join.css';
+import '@/styles/Join.css';
 
 export default function Join() {
     const [userid, setuserId] = useState('');

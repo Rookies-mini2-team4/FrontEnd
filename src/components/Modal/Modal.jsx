@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'; // PropTypes를 불러옵니다.
-import 'src/styles/Modal.css'; // 모달 스타일링을 위한 CSS 파일
+//import 'src/styles/Modal.css'; // 모달 스타일링을 위한 CSS 파일
 
 const Modal = ({ show, onClose, children }) => {
     if (!show) {
