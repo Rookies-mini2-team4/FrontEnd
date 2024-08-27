@@ -86,26 +86,38 @@ const Sidebar = ({ isLoggedIn }) => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <h1>RookieStagram</h1>
+        <img src="/RookieStagram.png" alt="홈 아이콘" />
+        
       </div>
       <nav>
         <ul>
           <li>
-            <NavLink to="/api/main">홈</NavLink>
+            <NavLink to="/api/main">
+              <img src="/Home.png" alt="홈 아이콘" />
+              홈
+            </NavLink>
           </li>
           {isLoggedIn ? (
             <>
               <li>
-                <NavLink to="/api/messages">메시지 - 절대 절대로 클릭금지 서버 터짐</NavLink>
+                <NavLink to="/api/messages">
+                  <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
+                  메시지 - 절대 절대로 클릭금지 서버 터짐
+                </NavLink>
               </li>
               <li>
-                <button onClick={() => setShowCreateModal(true)}>만들기</button>
+                <button onClick={() => setShowCreateModal(true)}>
+                  <img src="/Image.png" alt="만들기 아이콘" />
+                  만들기
+                </button>
               </li>
               <li>
                 <NavLink to="/api/myprofile">프로필</NavLink>
               </li>
               <li>
-                <button onClick={handleLogout}>로그아웃</button>
+                <button onClick={handleLogout}>
+                  <img src="/Sign Out.png" alt="로그아웃 아이콘" />
+                  로그아웃</button>
               </li>
             </>
           ) : (
@@ -118,9 +130,7 @@ const Sidebar = ({ isLoggedIn }) => {
               </li>
             </>
           )}
-          <li>
-            <button onClick={() => setShowMoreModal(true)}>더 보기</button>
-          </li>
+        
         </ul>
       </nav>
 

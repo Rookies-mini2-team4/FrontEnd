@@ -3,13 +3,13 @@
   display: flex;
 }
 
-.sidebar {
+/* .sidebar {
   width: 250px;
   background-color: #343a40;
   color: white;
   padding: 20px;
   height: 100vh;
-}
+} */
 
 .main-content {
   flex-grow: 1;
