@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { getUserInfo, getUserId, getPhotos, getFollower, getFollowing, getFollowerNum, getFollowingNum } from 'src/services/UserService'
 import { followUser, unfollowUser } from 'src/services/FollowService'
-//import IdFromToken from '../services/IdFromToken.jsx';
 import ExtractIdFromToken from '../services/ExtractIdFromToken';
 import 'src/styles/Profile.css'
 
@@ -123,10 +122,12 @@ const Profile = () => {
         })
     };
 
+    const def = '/profileImages/defaultProfile.png'
+
     return (
         <div className="profile-page">
             <div className="profile-header">
-                <img className="profile-image" src={user.profileImage} />
+                <img className="profile-image" src={def} />
                 <div className="profile-info">
                     <div className="profile-header-row">
                         <h2>{user.userId}</h2>

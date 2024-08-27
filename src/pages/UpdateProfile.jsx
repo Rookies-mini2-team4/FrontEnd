@@ -70,22 +70,13 @@ const UpdateProfile = () => {
         });
     };
 
-    const [imgUrl, setImgUrl] = useState(user.profileImage);
-
-    useEffect(() => {
-        if(user.profileImage){
-            return setImgUrl(user.profileImage);
-        } else{
-            return setImgUrl('src/profileImages/defaultProfile.png');
-        }
-    }, [user]);
 
     return (
         <div className="update-profile">
             <h2>Update Profile</h2>
             <div className="profile-image">
                 <img
-                        src={imgUrl}
+                        src={'/profileImages/defaultProfile.png'}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
                 <label htmlFor="profileImage">change profile image</label>
