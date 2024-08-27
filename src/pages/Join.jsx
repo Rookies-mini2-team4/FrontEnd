@@ -72,9 +72,9 @@ export default function Join() {
 
     return (
         <div className="join-container">
-            <h2>회원가입 페이지입니다.</h2>
+            <h2>회원가입</h2>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group2">
                     <input
                         type="text"
                         name="userid"
@@ -85,7 +85,7 @@ export default function Join() {
                     {errors.userid && <span className="error-message">{errors.userid}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group2">
                     <input
                         type="password"
                         name="password"
@@ -96,7 +96,7 @@ export default function Join() {
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group2">
                     <input
                         type="password"
                         name="passwordConfirm"
@@ -107,7 +107,7 @@ export default function Join() {
                     {errors.passwordConfirm && <span className="error-message">{errors.passwordConfirm}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group2">
                     <input
                         type="text"
                         name="name"
@@ -118,7 +118,7 @@ export default function Join() {
                     {errors.name && <span className="error-message">{errors.name}</span>}
                 </div>
 
-                <div className="form-group">
+                <div className="form-group2">
                     <input
                         type="email"
                         name="email"
@@ -135,7 +135,7 @@ export default function Join() {
                 <button type="submit" className="join-button">Sign Up</button>
                 <button type="button" className="home-button" onClick={handleHomeClick}>Home</button>
                 
-                <div className="login-container">
+                <div className="login-container2">
                 <span>이미 회원이신가요?</span>
                 <button 
                 type="button" 

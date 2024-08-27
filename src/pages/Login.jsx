@@ -38,6 +38,7 @@ function Login({ onLogin }) {
         if (onLogin) {
           onLogin(userId); // 사용자 ID를 onLogin에 전달
         }
+        alert('로그인 되었습니다!');
         navigate('/api/main'); // 홈 화면으로 이동
       } else {
         throw new Error('No token received');
@@ -55,9 +56,9 @@ function Login({ onLogin }) {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <h2>로그인</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group1">
           <input
             type="text"
             value={userId}
@@ -65,7 +66,7 @@ function Login({ onLogin }) {
             placeholder="ID를 입력하세요."
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <input
             type="password"
             value={password}

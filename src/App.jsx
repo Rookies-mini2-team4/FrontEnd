@@ -1,31 +1,31 @@
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import Sidebar from './components/SideBar';
-// import MainHome from './components/MainHome'; // MainHome 컴포넌트를 불러옵니다.
-// import './App.css'; // App의 전반적인 레이아웃을 위한 CSS 파일
-// import PostDetail from './components/PostDetail';
-// import EditPost from './components/EditPost';
-// import Login from './login';
-// import MessagePage from './components/MessagePage';
+// // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// // import Sidebar from './components/SideBar';
+// // import MainHome from './components/MainHome'; // MainHome 컴포넌트를 불러옵니다.
+// // import './App.css'; // App의 전반적인 레이아웃을 위한 CSS 파일
+// // import PostDetail from './components/PostDetail';
+// // import EditPost from './components/EditPost';
+// // import Login from './login';
+// // import MessagePage from './components/MessagePage';
 
-// function App() {
-//     return (
-//         <Router>
-//             <div className="app">
-//                 <Sidebar />
-//                 <div className="content">
-//                     <Routes>
-//                         <Route path="/api/main" element={<MainHome />} />
-//                         <Route path="/api/main/:id" element={<PostDetail />} />
-//                         <Route path="/api/main/update/:id" element={<EditPost />} />
-//                         <Route path="/api/login" element={<Login />} />
-//                         <Route path="/api/messages" element={<MessagePage />} />
+// // function App() {
+// //     return (
+// //         <Router>
+// //             <div className="app">
+// //                 <Sidebar />
+// //                 <div className="content">
+// //                     <Routes>
+// //                         <Route path="/api/main" element={<MainHome />} />
+// //                         <Route path="/api/main/:id" element={<PostDetail />} />
+// //                         <Route path="/api/main/update/:id" element={<EditPost />} />
+// //                         <Route path="/api/login" element={<Login />} />
+// //                         <Route path="/api/messages" element={<MessagePage />} />
 
-//                     </Routes>
-//                 </div>
-//             </div>
-//         </Router>
-//     );
-// }
+// //                     </Routes>
+// //                 </div>
+// //             </div>
+// //         </Router>
+// //     );
+// // }
 
 // export default App;
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -43,6 +43,7 @@ import CreatePostForm from './components/Posts/CreatePostForm'; // 글 작성 �
 import ProtectedRoute from './routes/ProtectedRoute'; // ProtectedRoute 가져오기
 import Profile from "@/pages/Profile";
 import UpdateProfile from "@/pages/UpdateProfile";
+import Logout from '@/pages/Logout'; // 로그아웃 페이지
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -84,6 +85,7 @@ function App() {
                         <Route path="/api/myprofile" element={<Profile />} />
                         <Route path="/api/profile/:id" element={<Profile />} />
                         <Route path="/api/updateProfile" element={<UpdateProfile />} />
+                        <Route path="/api/logout" element={<Logout />} /> {/* 로그아웃 페이지 추가 */}
                     </Routes>
                 </div>
             </div>
