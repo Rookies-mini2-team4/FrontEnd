@@ -63,7 +63,7 @@
 
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Modal from '../Modal/Modal'; // 모달 컴포넌트를 가져옵니다.
+import Modal from '../Modal/Modal'; // 모달 컴포넌트
 import CreatePostForm from '../Posts/CreatePostForm'; 
 import "@/styles/Sidebar.css";
 

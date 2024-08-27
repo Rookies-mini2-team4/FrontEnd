@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'; // prop-types를 import합니다.
+import PropTypes from 'prop-types'; // prop-types를 import
 
 import { useState } from 'react';
-import '@/styles/Login.css'; // CSS 파일을 불러옵니다.
+import '@/styles/Login.css'; // CSS 파일
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 
 function Login({ onLogin }) {

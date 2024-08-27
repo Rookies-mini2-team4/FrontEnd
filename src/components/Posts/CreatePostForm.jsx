@@ -64,7 +64,7 @@ const CreatePostForm = ({ onClose }) => {
 };
 
 CreatePostForm.propTypes = {
-    onClose: PropTypes.func.isRequired, // onClose prop이 필수임을 명시합니다.
+    onClose: PropTypes.func.isRequired, // onClose prop이 필수임을 명시
 };
 
 export default CreatePostForm;

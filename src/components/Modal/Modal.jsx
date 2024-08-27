@@ -20,11 +20,11 @@ const Modal = ({ show, onClose, children }) => {
     );
   };
   
-  // Props의 타입을 지정합니다.
+  // Props의 타입을 지정
   Modal.propTypes = {
-    show: PropTypes.bool.isRequired, // show는 반드시 boolean 값이어야 하며 필수 항목입니다.
-    onClose: PropTypes.func.isRequired, // onClose는 반드시 함수여야 하며 필수 항목입니다.
-    children: PropTypes.node // children은 React 노드로, 필수는 아닙니다.
+    show: PropTypes.bool.isRequired, // show는 반드시 boolean 값이어야 하며 필수 항목
+    onClose: PropTypes.func.isRequired, // onClose는 반드시 함수여야 하며 필수 항목
+    children: PropTypes.node // children은 React 노드로, 필수 아님.
   };
   
   export default Modal;
