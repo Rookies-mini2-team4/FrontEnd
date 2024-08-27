@@ -1,0 +1,34 @@
+/* Container styling */
+.user-search {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Header styling */
+.user-search h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #262626;
+    margin-bottom: 20px;
+}
+
+/* Search input styling */
+.user-search input {
+    width: 85%;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 30px;
+    background-color: #efefef;
+    font-size: 14px;
+    color: #262626;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.user-search input:focus {
+    background

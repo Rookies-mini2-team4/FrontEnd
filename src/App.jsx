@@ -31,18 +31,19 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar/SideBar';
-import MainHome from 'src/pages/MainHome'; // 로그인하지 않은 사용자를 위한 홈 컴포넌트
-import UserHome from 'src/pages/UserHome'; // 로그인한 사용자를 위한 홈 컴포넌트
+import MainHome from '@/pages/MainHome'; // 로그인하지 않은 사용자를 위한 홈 컴포넌트
+import UserHome from '@/pages/UserHome'; // 로그인한 사용자를 위한 홈 컴포넌트
 import './styles/App.css'; // App의 전반적인 레이아웃을 위한 CSS 파일
 import PostDetail from './components/Posts/PostDetail';
 import EditPost from './components/Posts/EditPost';
-import Login from 'src/pages/Login';
-import Join from 'src/pages/Join';
+import Login from '@/pages/Login';
+import Join from '@/pages/Join';
 import MessagePage from './components/Chat/MessagePage';
 import CreatePostForm from './components/Posts/CreatePostForm'; // 글 작성 폼 추가
 import ProtectedRoute from './routes/ProtectedRoute'; // ProtectedRoute 가져오기
-import Profile from "src/pages/Profile";
-import UpdateProfile from "src/pages/UpdateProfile";
+import Profile from "@/pages/Profile";
+import UpdateProfile from "@/pages/UpdateProfile";
+import Search from "@/pages/Search"
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -84,6 +85,7 @@ function App() {
                         <Route path="/api/myprofile" element={<Profile />} />
                         <Route path="/api/profile/:id" element={<Profile />} />
                         <Route path="/api/updateProfile" element={<UpdateProfile />} />
+                        <Route path="/api/search" element={<Search />} />
                     </Routes>
                 </div>
             </div>

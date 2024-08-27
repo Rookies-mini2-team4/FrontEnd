@@ -94,3 +94,13 @@ export const getProfileImg = (id) => {
     },
   });
 };
+
+export const searchUser = (search) => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.get(REST_API_URL + '/search/' + search, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

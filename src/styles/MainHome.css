@@ -1,14 +1,124 @@
-.main-home {
-    width: 100%; /* 부모 요소의 너비를 100% 차지 */
-    max-width: 800px; /* 원하는 최대 너비 설정 */
-    margin: 0 auto; /* 가운데 정렬 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+}
+
+/* .main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 위쪽에서 시작하도록 조정 */
+    width: 100%; /* 메인 콘텐츠가 전체 너비를 사용하도록 */
 }
 
 .post {
-    background-color: #fff;
+    width: 500px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px; /* 각 포스트 간의 간격 추가 */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
     padding: 20px;
+}
+
+.post-header .user-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.post-header .username {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.post-content {
+    font-size: 16px;
     margin-bottom: 20px;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #777;
+}
+
+.post-photos img {
+    max-width: 100%;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    margin-bottom: 20px; /* 사진과 다른 요소 간의 간격 */
+}
+
+.post-comments {
+    margin-top: 20px;
+}
+
+.post-comments h4 {
+    margin-bottom: 10px;
+}
+
+.post-comments ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.post-comments li {
+    font-size: 14px;
+    color: #555;
+}
+
+/* 댓글 입력 박스 스타일 조정 */
+.comment-box {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9; /* 댓글 입력 박스 배경 추가 */
+    border-radius: 0 0 10px 10px; /* 아래쪽 모서리 둥글게 */
+}
+
+.comment-box input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    margin-right: 10px;
+}
+
+.comment-box button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.comment-box button:hover {
+    background-color: #0056b3;
 }

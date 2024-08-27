@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types'; // prop-types를 import
+
 import { useState } from 'react';
-import 'src/styles/Login.css'; // CSS 파일을 불러옵니다.
+import '@/styles/Login.css'; // CSS 파일
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 
 function Login({ onLogin }) {
@@ -10,7 +12,7 @@ function Login({ onLogin }) {
   // 로그인 폼 제출 처리 함수
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:8081/api/login', {
         method: 'POST',
@@ -19,34 +21,33 @@ function Login({ onLogin }) {
         },
         body: JSON.stringify({ userId: userId, password: password }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Login failed');
       }
-
+  
       const data = await response.json();
-
+  
       if (data.token) {
         localStorage.setItem('jwtToken', data.token); // JWT 토큰을 로컬 스토리지에 저장
         console.log('Login successful!');
         console.log('JWT Token:', data.token); // 토큰 로그 출력
         console.log('Local Storage JWT Token:', localStorage.getItem('jwtToken')); // 로컬 스토리지에서 토큰 로그 출력
-
-        setMessage('Login successful!');
+  
         if (onLogin) {
-          onLogin(); // 로그인 성공 후 콜백 호출
+          onLogin(userId); // 사용자 ID를 onLogin에 전달
         }
-        // 로그인 성공 후 사용자의 홈 화면으로 이동
-        navigate('/api/main'); // 로그인된 사용자의 홈 화면으로 이동
+        navigate('/api/main'); // 홈 화면으로 이동
       } else {
         throw new Error('No token received');
       }
     } catch (error) {
-      console.error('Login failed:', error); // 에러 로그 출력
+      console.error('Login failed:', error);
       setMessage(`Login failed: ${error.message}`);
     }
   };
+  
   // Sign Up 버튼 클릭 시 호출될 함수
   const handleSignUpClick = () => {
     navigate('/join/register'); // /join 경로로 이동
@@ -82,5 +83,7 @@ function Login({ onLogin }) {
     </div>
   );
 }
-
+Login.propTypes = {
+  onLogin: PropTypes.func.isRequired, // onLogin prop이 함수 타입이며 필수임을 명시
+};
 export default Login;

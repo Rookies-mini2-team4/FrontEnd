@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getUserInfo, getUserId,updateProfile,getProfileImg } from 'src/services/UserService'
+import { getUserInfo, getUserId,updateProfile,getProfileImg } from '@/services/UserService'
 import ExtractIdFromToken from '../services/ExtractIdFromToken';
 import '../styles/UpdateProfile.css';
 
