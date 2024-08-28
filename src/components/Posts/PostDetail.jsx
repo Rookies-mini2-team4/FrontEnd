@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getPostById, deletePost } from '../../services/MainService';
 import { getCommentById, createComment, updateComment, deleteComment } from '../../services/CommentService';
+import { getImage } from '../../services/PhotoService';
 import ConfirmModal from '../Modal/ConfirmModal';
 
 const PostDetail = () => {
@@ -10,7 +11,7 @@ const PostDetail = () => {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]); // 댓글 상태 추가
     const [newCommentText, setNewCommentText] = useState(""); // 새로운 댓글 입력 상태
-    
+    const [imageUrls, setImageUrls] = useState([]);
 
     const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -28,10 +29,32 @@ const PostDetail = () => {
             setComments([]);
         }
     };
+    // 이미지 데이터를 비동기적으로 가져오는 함수
+    const fetchImages = async (photos) => {
+        const urls = await Promise.all(
+            photos.map(async (photo) => {
+                try {
+                    const response = await getImage(photo.imageUrl);
+                    const url = URL.createObjectURL(response.data);
+                    return url;
+                } catch (error) {
+                    console.error(`Failed to fetch image: ${photo.imageUrl}`, error);
+                    return '/default-image-path.png'; // 실패 시 기본 이미지를 표시할 수 있음
+                }
+            })
+        );
+        setImageUrls(urls);
+    };
 
     useEffect(() => {
         fetchPostAndComments(); // 페이지가 로드될 때 게시글 및 댓글 데이터를 가져옵니다
     }, [id]); // id가 변경될 때마다 실행
+
+    useEffect(() => {
+        if (post && Array.isArray(post.photos) && post.photos.length > 0) {
+            fetchImages(post.photos);
+        }
+    }, [post]);
 
     const handleDeletePost = async () => {
         await deletePost(id);
@@ -97,8 +120,13 @@ const PostDetail = () => {
             <h2>{post.contents}</h2>
             <p>좋아요: {post.likes}</p>
             <p>{new Date(post.createdAt).toLocaleDateString()}</p>
-            {post.photos && <img src={post.photos} alt="Post" />}
-            
+            {imageUrls.length > 0 && (
+                <div className="post-photos">
+                    {imageUrls.map((url, index) => (
+                        <img key={index} src={url} alt={post.photos[index].caption || 'Post'} />
+                    ))}
+                </div>
+            )}
             <div className="post-comments">
                 <h4>댓글: </h4>
                 <ul>
