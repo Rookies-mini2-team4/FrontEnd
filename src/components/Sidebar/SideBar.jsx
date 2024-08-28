@@ -101,6 +101,12 @@ const Sidebar = ({ isLoggedIn }) => {
           {isLoggedIn && (
             <>
               <li>
+                <NavLink to="/api/search">
+                  <img src="/Search.png" alt="검색 아이콘" />
+                  검색
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/api/messages">
                   <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
                   메시지 - 절대 절대로 클릭금지 서버 터짐
@@ -113,7 +119,8 @@ const Sidebar = ({ isLoggedIn }) => {
                 </button>
               </li>
               <li>
-                <NavLink to="/api/myprofile">프로필</NavLink>
+                <NavLink to="/api/myprofile">
+                <img src="/User.png" alt="메시지 아이콘" />프로필</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout}>
