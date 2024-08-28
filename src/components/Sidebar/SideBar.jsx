@@ -73,16 +73,15 @@ const Sidebar = ({ isLoggedIn }) => {
   
   const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 기능 추가
 
-  const handleLoginNavigate = () => {
-    navigate('/api/login'); // 로그인 페이지로 이동
-  };
+  // const handleLoginNavigate = () => {
+  //   navigate('/api/login'); // 로그인 페이지로 이동
+  // };
 
   const handleLogout = () => {
     localStorage.removeItem('jwtToken'); // 토큰 삭제
-    window.alert('로그아웃 되었습니다!');
-
-    navigate('/api/main'); // 메인 페이지로 이동
-    window.location.reload(); // 페이지 리로드하여 로그인 상태 갱신
+    alert('로그아웃 되었습니다!');
+    navigate('/api/login'); // 로그인 페이지로 이동
+    window.location.reload(); // 페이지 리로드는 사용하지 않도록 수정
   };
 
   return (
@@ -99,15 +98,10 @@ const Sidebar = ({ isLoggedIn }) => {
               홈
             </NavLink>
           </li>
-          {isLoggedIn ? (
+          {isLoggedIn && (
             <>
               <li>
-                <NavLink to="/api/search">
-                  <img src="/Search.png" alt="검색 아이콘" />
-                  검색
-                </NavLink>
                 <NavLink to="/api/messages">
-                <NavLink to="/create-room">
                   <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
                   메시지 - 절대 절대로 클릭금지 서버 터짐
                 </NavLink>
@@ -119,20 +113,20 @@ const Sidebar = ({ isLoggedIn }) => {
                 </button>
               </li>
               <li>
-                <NavLink to="/api/myprofile">
-                <img src="/User.png" alt="로그아웃 아이콘" />
-                프로필</NavLink>
+                <NavLink to="/api/myprofile">프로필</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout}>
                   <img src="/Sign Out.png" alt="로그아웃 아이콘" />
-                  로그아웃</button>
+                  로그아웃
+                </button>
               </li>
             </>
-          ) : (
+          )}
+          {!isLoggedIn && (
             <>
               <li>
-                <button onClick={handleLoginNavigate}>로그인</button>
+                <NavLink to="/api/login">로그인</NavLink>
               </li>
               <li>
                 <NavLink to="/join/register">회원가입</NavLink>

@@ -4,7 +4,15 @@ const REST_API_BASE_URL = "http://localhost:8081/api";
 
 const REST_API_URL = `${REST_API_BASE_URL}/main`;
 
-export const getAllPosts = () => axios.get(REST_API_URL);
+export const getAllPosts = () => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.get(REST_API_URL, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
+    },
+  });
+}
 
 //export const getPostById = (id) => axios.get(`${REST_API_URL}/${id}`);
 export const getPostById = (id) => {
