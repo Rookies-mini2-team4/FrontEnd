@@ -126,20 +126,17 @@ const Profile = () => {
     const [imageSrc, setImageSrc] = useState(null);
     useEffect(() => {
         let imageUrl;
-        if (currentId!=null){
-            getProfileImg(currentId).then((response) => {
+            getProfileImg(id).then((response) => {
                 if (response.data.byteLength==0) setImageSrc('/profileImages/defaultProfile.png')
                 else {
                     const blob = new Blob([response.data], { type: 'image/jpeg' })
                     imageUrl = URL.createObjectURL(blob);
                     setImageSrc(imageUrl);
                 }
-                
             }).catch(error => {
                 console.error(error);
             });
-        }
-    }, [currentId, user]);
+    }, [id]);
 
     return (
         <div className="profile-page">
@@ -182,11 +179,12 @@ const Profile = () => {
                 </div>
             </div>
             <div className="profile-photos">
-                {photos.map(photo => (
+                {photos.length > 0 ? (photos.map(photo => (
                     <div key={photo.id} className="photo-container">
                         <img src={photo.imageUrl} />
                     </div>
-                ))}
+                ))
+            ) : (<p>No post</p>) }
             </div>
         </div>
     );

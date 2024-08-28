@@ -24,16 +24,6 @@ export const getUserId = (userId) => {
   });
 };
 
-export const getPhotos = (id) => {
-  const token = localStorage.getItem("jwtToken");
-  return axios.get(REST_API_URL + '/' + id + '/photos', {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
-    },
-  });
-};
-
 export const getFollower = (id) => {
   const token = localStorage.getItem("jwtToken");
   return axios.get(REST_API_URL + '/' + id + '/follower', {
@@ -98,6 +88,16 @@ export const getProfileImg = (id) => {
 export const searchUser = (search) => {
   const token = localStorage.getItem("jwtToken");
   return axios.get(REST_API_URL + '/search/' + search, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getPhotos = (id) => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.get(REST_API_URL + '/photos/' + id, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

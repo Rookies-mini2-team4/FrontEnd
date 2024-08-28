@@ -171,6 +171,10 @@
     gap: 10px;
 }
 
+.profile-photos p{
+    color:#999999;
+}
+
 .photo-container {
     position: relative;
     overflow: hidden;
