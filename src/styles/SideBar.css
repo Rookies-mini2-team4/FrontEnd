@@ -60,3 +60,9 @@
     font-weight: bold;
     color: #333;
 }
+
+.sidebar .logo img {
+    width: 100%; /* 이미지가 사이드바의 전체 너비에 맞게 */
+    height: auto; /* 높이는 비율에 맞게 자동 조정 */
+    display: block; /* 이미지 주변의 여백을 제거 */
+}
