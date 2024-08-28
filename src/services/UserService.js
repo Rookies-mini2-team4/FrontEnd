@@ -83,3 +83,24 @@ export const updateProfile = (id, formData) => {
     },
   });
 };
+
+export const getProfileImg = (id) => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.get(REST_API_URL + '/profileImg/' + id, {
+    responseType: 'arraybuffer',
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const searchUser = (search) => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.get(REST_API_URL + '/search/' + search, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

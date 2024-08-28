@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getUserInfo, getUserId,updateProfile } from '@/services/UserService'
+import { getUserInfo, getUserId,updateProfile,getProfileImg } from '@/services/UserService'
 import ExtractIdFromToken from '../services/ExtractIdFromToken';
 import '../styles/UpdateProfile.css';
 
@@ -45,13 +45,12 @@ const UpdateProfile = () => {
         //console.log(user);
     };
 
+    const [imageSrc, setImageSrc] = useState(null);
+
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
-        getUserInfo(currentId).then((response) => {
-            setUser(response.data)
-        }).catch(error => {
-            console.error(error);
-        })
+        const fileUrl = URL.createObjectURL(e.target.files[0]);
+        setImageSrc(fileUrl);
     };
 
     const navigate = useNavigate();
@@ -70,22 +69,31 @@ const UpdateProfile = () => {
         });
     };
 
-    const [imgUrl, setImgUrl] = useState(user.profileImage);
-
     useEffect(() => {
-        if(user.profileImage){
-            return setImgUrl(user.profileImage);
-        } else{
-            return setImgUrl('src/profileImages/defaultProfile.png');
+        let imageUrl;
+        if (currentId!=null){
+            getProfileImg(currentId).then((response) => {
+                console.log(response);
+                if (response.data.byteLength==0) setImageSrc('/profileImages/defaultProfile.png')
+                else {
+                    const blob = new Blob([response.data], { type: 'image/jpeg' })
+                    imageUrl = URL.createObjectURL(blob);
+                    setImageSrc(imageUrl);
+                }
+                
+            }).catch(error => {
+                console.error(error);
+            });
         }
-    }, [user]);
+    }, [currentId, user]);
+
 
     return (
         <div className="update-profile">
             <h2>Update Profile</h2>
             <div className="profile-image">
                 <img
-                        src={imgUrl}
+                        src={imageSrc}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
                 <label htmlFor="profileImage">change profile image</label>
@@ -96,6 +104,7 @@ const UpdateProfile = () => {
                     accept="image/*"
                     onChange={handleFileChange}
                 />
+                
             </div>
                   
             <form onSubmit={handleSubmit}>

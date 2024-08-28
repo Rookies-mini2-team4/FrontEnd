@@ -1,0 +1,81 @@
+/* Container styling */
+.user-search {
+    max-width: 500px;
+    width: 70%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Header styling */
+.user-search h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #262626;
+    margin-bottom: 20px;
+}
+
+/* Search input styling */
+.user-search input {
+    width: 85%;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #262626;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.user-search input:focus {
+    background-color: #f3f3f3;
+}
+
+/* User list container */
+.user-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Link wrapper for user item */
+.user-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* User item styling */
+.user-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.user-item:hover {
+    background-color: #f1f1f1;
+}
+/* User name and details */
+.user-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #262626;
+}
+
+.user-item p strong {
+    font-weight: 600;
+}
+
+/* No users found message */
+.user-list p {
+    font-size: 14px;
+    color: #8e8e8e;
+}

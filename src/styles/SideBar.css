@@ -71,13 +71,13 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.3); /* 불투명도를 0.3으로 설정하여 더 밝게 */
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 1000;
+    justify-content: center;
 }
 
 .modal-content {
-    background: white;
+    background: #ffffff;
+    border-radius: 8px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 그림자를 적당히 설정 */

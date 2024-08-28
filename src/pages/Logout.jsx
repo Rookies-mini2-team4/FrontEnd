@@ -53,7 +53,7 @@ export default function Logout() {
 
                 // 로컬 스토리지에서 토큰 제거
                 localStorage.removeItem('token');
-
+              
                 // 로그아웃 알림을 먼저 표시
                 window.alert('로그아웃 되었습니다!');
 
