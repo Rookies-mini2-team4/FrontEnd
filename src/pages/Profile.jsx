@@ -176,9 +176,15 @@ const Profile = () => {
                         </div>
                     </div>
                     <p className="profile-name">{user.userName}</p>
+                    {/* <div className='post'>
+                        <img src={'/Post.png'}/> Post
+                    </div> */}
                 </div>
+                
             </div>
+            
             <div className="profile-photos">
+                
                 {photos.length > 0 ? (photos.map(photo => (
                     <div key={photo.id} className="photo-container">
                         <img src={photo.imageUrl} />
