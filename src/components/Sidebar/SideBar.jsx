@@ -93,7 +93,7 @@ const Sidebar = ({ isLoggedIn }) => {
       <nav>
         <ul>
           <li>
-            <NavLink to="/api/main">
+            <NavLink to="/create-room">
               <img src="/Home.png" alt="홈 아이콘" />
               홈
             </NavLink>
