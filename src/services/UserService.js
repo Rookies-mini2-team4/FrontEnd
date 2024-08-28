@@ -98,6 +98,7 @@ export const searchUser = (search) => {
 export const getPhotos = (id) => {
   const token = localStorage.getItem("jwtToken");
   return axios.get(REST_API_URL + '/photos/' + id, {
+    responseType: 'json',
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

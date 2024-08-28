@@ -38,25 +38,24 @@ const CreateChatRoom = () => {
 
     const handleCreateRoom = () => {
         if (selectedFriend) {
-            getUserId(extractedUserId)
-                .then(response => {
-                    const currentUserId = response.data; // 현재 사용자의 실제 인덱스 값
-                    console.log('Making a POST request to /api/chat/rooms');
-                    return axios.post('/api/chat/rooms', 
-                        { users: [currentUserId, selectedFriend] }, 
-                        {
-                            headers: {
-                                Authorization: `Bearer ${token}`
-                            }
-                        }
-                    );
-                })
-                .then(response => navigate(`/chat/${response.data.id}`))
-                .catch(error => {
-                    console.error('Error creating chat room:', error);
-                });
+            axios.post('http://localhost:8081/api/chat/room', 
+                { users: [selectedFriend] },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            .then(response => {
+                const roomId = response.data.id; // 생성된 방의 ID
+                navigate(`/chat/${roomId}`); // 방으로 이동
+            })
+            .catch(error => {
+                console.error('Error creating chat room:', error);
+            });
         }
     };
+    
 
     return (
         <div>

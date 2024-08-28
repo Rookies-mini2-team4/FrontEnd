@@ -73,7 +73,6 @@ const UpdateProfile = () => {
         let imageUrl;
         if (currentId!=null){
             getProfileImg(currentId).then((response) => {
-                console.log(response);
                 if (response.data.byteLength==0) setImageSrc('/profileImages/defaultProfile.png')
                 else {
                     const blob = new Blob([response.data], { type: 'image/jpeg' })
@@ -85,7 +84,7 @@ const UpdateProfile = () => {
                 console.error(error);
             });
         }
-    }, [currentId, user]);
+    }, [currentId]);
 
 
     return (

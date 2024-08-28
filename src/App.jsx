@@ -38,7 +38,6 @@ import PostDetail from './components/Posts/PostDetail';
 import EditPost from './components/Posts/EditPost';
 import Login from '@/pages/Login';
 import Join from '@/pages/Join';
-import MessagePage from './components/Chat/MessagePage';
 import CreatePostForm from './components/Posts/CreatePostForm'; // 글 작성 폼 추가
 import ProtectedRoute from './routes/ProtectedRoute'; // ProtectedRoute 가져오기
 import Profile from "@/pages/Profile";
@@ -93,10 +92,7 @@ function App() {
                                 <ProtectedRoute element={() => <CreatePostForm />} />
                             } 
                         />
-                        <Route 
-                            path="/api/messages" 
-                            element={<ProtectedRoute element={MessagePage} />} 
-                        />
+                        
                         <Route path="/api/myprofile" element={<Profile />} />
                         <Route path="/api/profile/:id" element={<Profile />} />
                         <Route path="/api/updateProfile" element={<UpdateProfile />} />
