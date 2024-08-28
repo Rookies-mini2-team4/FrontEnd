@@ -24,8 +24,15 @@ function Login({ onLogin }) {
   
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed');
-      }
+        // 서버에서 반환한 에러 메시지에 따라 적절한 에러 문구를 설정
+          if (errorData.message === 'User not found with userId: ') {
+              throw new Error('일치하는 ID가 없습니다.');
+          } else if (errorData.message === '자격 증명에 실패하였습니다.') {
+              throw new Error('비밀번호가 일치하지 않습니다.');
+          } else {
+              throw new Error(errorData.message || 'Login failed');
+          }
+        };
   
       const data = await response.json();
   
@@ -38,13 +45,14 @@ function Login({ onLogin }) {
         if (onLogin) {
           onLogin(userId); // 사용자 ID를 onLogin에 전달
         }
+        alert('로그인 되었습니다!');
         navigate('/api/main'); // 홈 화면으로 이동
       } else {
         throw new Error('No token received');
       }
     } catch (error) {
       console.error('Login failed:', error);
-      setMessage(`Login failed: ${error.message}`);
+      setMessage(`${error.message}`);
     }
   };
   
@@ -55,9 +63,9 @@ function Login({ onLogin }) {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <h2>로그인</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group1">
           <input
             type="text"
             value={userId}
@@ -65,7 +73,7 @@ function Login({ onLogin }) {
             placeholder="ID를 입력하세요."
           />
         </div>
-        <div className="form-group">
+        <div className="form-group1">
           <input
             type="password"
             value={password}
