@@ -79,6 +79,8 @@ const Sidebar = ({ isLoggedIn }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('jwtToken'); // 토큰 삭제
+    window.alert('로그아웃 되었습니다!');
+
     navigate('/api/main'); // 메인 페이지로 이동
     window.location.reload(); // 페이지 리로드하여 로그인 상태 갱신
   };
@@ -100,7 +102,7 @@ const Sidebar = ({ isLoggedIn }) => {
           {isLoggedIn ? (
             <>
               <li>
-                <NavLink to="/api/messages">
+                <NavLink to="/create-room">
                   <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
                   메시지 - 절대 절대로 클릭금지 서버 터짐
                 </NavLink>

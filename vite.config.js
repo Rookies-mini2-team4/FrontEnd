@@ -14,6 +14,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"), // @를 src 폴더로 대체
     },
   },
+  define: {
+    global: 'window', // global을 window로 정의
+  },
   server: {
     port: 3000, // 개발 서버 포트를 3000으로 설정
   },
