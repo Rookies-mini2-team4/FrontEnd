@@ -1,10 +1,10 @@
 .update-profile {
+    width: 300px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
     margin: 50px auto;
     font-family: Arial, sans-serif;
 }
@@ -16,7 +16,11 @@
 }
 
 .profile-image {
-    margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+.profile-image input{
+    display: none;
 }
 
 .profile-image img {
@@ -35,7 +39,6 @@
 .profile-image input {
     margin-top: 10px;
     cursor: pointer;
-    display: none;
 }
 
 .user-id, .user-email {

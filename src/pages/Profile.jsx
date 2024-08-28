@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { getUserInfo, getUserId, getPhotos, getFollower, getFollowing, getFollowerNum, getFollowingNum } from '@/services/UserService'
+import { getUserInfo, getUserId, getPhotos, getFollower, getFollowing, getFollowerNum, getFollowingNum, getProfileImg } from '@/services/UserService'
 import { followUser, unfollowUser } from '@/services/FollowService'
 //import IdFromToken from '../services/IdFromToken.jsx';
 import ExtractIdFromToken from '../services/ExtractIdFromToken';
@@ -77,7 +77,7 @@ const Profile = () => {
     const buttonType = () => {
         if(currentId==id){
             return <button className='update-button'>
-                    <Link to={`/api/updateProfile`}>update profile</Link>
+                    <Link className='update' to={`/api/updateProfile`}>update profile</Link>
                     </button>
         }else if(followers.some(follower => follower.followerId == currentId)){
             return <button className='follow-button' onClick={handleUnfollow}>unfollow</button>
@@ -123,10 +123,28 @@ const Profile = () => {
         })
     };
 
+    const [imageSrc, setImageSrc] = useState(null);
+    useEffect(() => {
+        let imageUrl;
+        if (currentId!=null){
+            getProfileImg(currentId).then((response) => {
+                if (response.data.byteLength==0) setImageSrc('/profileImages/defaultProfile.png')
+                else {
+                    const blob = new Blob([response.data], { type: 'image/jpeg' })
+                    imageUrl = URL.createObjectURL(blob);
+                    setImageSrc(imageUrl);
+                }
+                
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+    }, [currentId, user]);
+
     return (
         <div className="profile-page">
             <div className="profile-header">
-                <img className="profile-image" src={user.profileImage} />
+                <img className="profile-image" src={imageSrc} />
                 <div className="profile-info">
                     <div className="profile-header-row">
                         <h2>{user.userId}</h2>
@@ -137,11 +155,13 @@ const Profile = () => {
                             followers <strong>{followerNum}</strong>
                         </button>
                         <div className="dropdown-content">
-                            {followers.map(follower => (
-                                <Link to={`/api/profile/${follower.followerId}`} key={follower.id}>
-                                {follower.followerUserId}
-                                </Link>
-                            ))}
+                            {followers.length > 0 ? (
+                                followers.map(follower => (
+                                    <Link to={`/api/profile/${follower.followerId}`} key={follower.id}>
+                                    {follower.followerUserId}
+                                    </Link>
+                                ))
+                            ) : (<p>No follower</p>)}
                         </div>
                     </div>
                     <div className="dropdown">
@@ -149,11 +169,13 @@ const Profile = () => {
                             folloing <strong>{followingNum}</strong>
                         </button>
                         <div className="dropdown-content">
-                            {followings.map(following => (
+                            {followings.length > 0 ? (
+                            followings.map(following => (
                                 <Link to={`/api/profile/${following.followingId}`} key={following.id}>
                                 {following.followingUserId}
                                 </Link>
-                            ))}
+                            ))
+                        ) : (<p>No following</p>)}
                         </div>
                     </div>
                     <p className="profile-name">{user.userName}</p>

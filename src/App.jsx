@@ -43,10 +43,10 @@ import CreatePostForm from './components/Posts/CreatePostForm'; // 글 작성 �
 import ProtectedRoute from './routes/ProtectedRoute'; // ProtectedRoute 가져오기
 import Profile from "@/pages/Profile";
 import UpdateProfile from "@/pages/UpdateProfile";
+import Search from "@/pages/Search"
 import ChatRooms from './components/Chat/ChatRooms';
 import ChatRoom from './components/Chat/ChatRoom';  // 개별 채팅방 컴포넌트
 import CreateChatRoom from './components/Chat/CreateChatRoom';
-
 
 
 function App() {
@@ -100,6 +100,7 @@ function App() {
                         <Route path="/api/myprofile" element={<Profile />} />
                         <Route path="/api/profile/:id" element={<Profile />} />
                         <Route path="/api/updateProfile" element={<UpdateProfile />} />
+                        <Route path="/api/search" element={<Search />} />
                     </Routes>
                 </div>
             </div>
