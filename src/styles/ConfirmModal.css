@@ -1,4 +1,4 @@
-.modal-backdrop {
+.modal-backdrop2 {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.modal-content {
+.modal-content2 {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -21,11 +21,11 @@
     text-align: center;
 }
 
-.modal-buttons {
+.modal-buttons2 {
     margin-top: 20px;
 }
 
-.modal-buttons button {
+.modal-buttons2 button {
     margin: 0 10px;
     padding: 10px 20px;
     font-size: 16px;

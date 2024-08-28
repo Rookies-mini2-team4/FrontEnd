@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'; // PropTypes를 불러옵니다.
-//import 'src/styles/Modal.css'; // 모달 스타일링을 위한 CSS 파일
+import '@/styles/Modal.css'; // 모달 스타일링을 위한 CSS 파일
 
 const Modal = ({ show, onClose, children }) => {
     if (!show) {
@@ -7,12 +7,12 @@ const Modal = ({ show, onClose, children }) => {
     }
   
     return (
-      <div className="modal-backdrop" onClick={onClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <button className="close-button" onClick={onClose}>
+      <div className="modal-backdrop1" onClick={onClose}>
+        <div className="modal-content1" onClick={(e) => e.stopPropagation()}>
+          <button className="close-button1" onClick={onClose}>
             X
           </button>
-          <div className="modal-body">
+          <div className="modal-body1">
             {children}
           </div>
         </div>

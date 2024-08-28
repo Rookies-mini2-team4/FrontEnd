@@ -8,7 +8,6 @@
     flex-direction: column;
     align-items: flex-start; /* 왼쪽 정렬 */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-    z-index: 1;
 }
 
 .sidebar nav ul {
@@ -60,67 +59,4 @@
     font-size: 24px;
     font-weight: bold;
     color: #333;
-}
-
-/* Modal 스타일 */
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* 불투명도를 0.3으로 설정하여 더 밝게 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 그림자를 적당히 설정 */
-    max-width: 500px; /* 창의 최대 너비를 설정 */
-    width: 80%; /* 창의 너비를 화면의 80%로 설정 */
-    z-index: 1001;
-    text-align: center;
-    position: relative; /* 닫기 버튼의 위치 조정 */
-}
-
-
-.modal-body {
-    padding: 20px;
-    font-size: 18px; /* 내용의 글씨 크기를 적당히 설정 */
-    color: #333; /* 텍스트 색상을 더 어둡게 설정하여 대비를 높임 */
-}
-
-/* 모달 내부 버튼에 사이드바와 동일한 스타일 적용 */
-.modal-body button {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* 텍스트와 아이콘이 중앙에 위치하도록 */
-    padding: 10px 15px;
-    font-size: 18px;
-    color: #333; /* 텍스트 색상 */
-    text-decoration: none;
-    background-color: #ffffff; /* 버튼 배경색 */
-    border-radius: 10px; /* 둥근 모서리 */
-    transition: background-color 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 */
-    border: none; /* 기본 테두리 제거 */
-    cursor: pointer;
-    margin-bottom: 15px; /* 버튼 간 간격 */
-    width: 100%; /* 버튼의 너비를 100%로 설정 */
-    box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
-}
-
-.modal-body button:hover {
-    background-color: #eaeaea; /* 호버 시 배경색 변경 */
-}
-
-.modal-body button img {
-    margin-right: 10px; /* 아이콘과 텍스트 사이 간격 */
-    width: 24px; /* 아이콘 크기 */
-    height: 24px;
 }
