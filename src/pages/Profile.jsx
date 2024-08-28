@@ -34,7 +34,8 @@ const Profile = () => {
     }, [currentId,id]);
 
     const [user, setUser] = useState({});
-    const [photos, setPhotos] = useState([]);
+    const [thumbnails, setThumbnails] = useState([]);
+    const [mainId, setMainId] = useState([]);
     const [followers, setFollowers] = useState([]);
     const [followings, setFollowings] = useState([]);
     const [followerNum, setFollowerNum] = useState(0);
@@ -48,7 +49,33 @@ const Profile = () => {
         })
 
         getPhotos(id).then((response) => {
-            setPhotos(response.data);
+            
+            if (response.data=='') {
+                setMainId([]);
+                setThumbnails([]);
+            } else {
+                setMainId(response.data.mainId);
+
+                const photoUrls = response.data.imageBytes.map((imageByte) => {
+
+                    const base64ToUint8Array = (base64) => {
+                        const binaryString = window.atob(base64);
+                        const len = binaryString.length;
+                        const bytes = new Uint8Array(len);
+                        for (let i = 0; i < len; i++) {
+                            bytes[i] = binaryString.charCodeAt(i);
+                        }
+                        return bytes;
+                    };
+
+                    const uint8Array = base64ToUint8Array(imageByte);
+                    console.log(uint8Array);
+                    const blob = new Blob([uint8Array], { type: 'image/jpeg' });
+
+                    return URL.createObjectURL(blob);
+                });
+                setThumbnails(photoUrls);
+            }
         }).catch(error => {
             console.error(error);
         })
@@ -126,6 +153,7 @@ const Profile = () => {
     const [imageSrc, setImageSrc] = useState(null);
     useEffect(() => {
         let imageUrl;
+            if (id!=null){
             getProfileImg(id).then((response) => {
                 if (response.data.byteLength==0) setImageSrc('/profileImages/defaultProfile.png')
                 else {
@@ -136,6 +164,7 @@ const Profile = () => {
             }).catch(error => {
                 console.error(error);
             });
+        }
     }, [id]);
 
     return (
@@ -176,15 +205,24 @@ const Profile = () => {
                         </div>
                     </div>
                     <p className="profile-name">{user.userName}</p>
+                    {/* <div className='post'>
+                        <img src={'/Post.png'}/> Post
+                    </div> */}
                 </div>
+                
             </div>
+            
             <div className="profile-photos">
-                {photos.length > 0 ? (photos.map(photo => (
-                    <div key={photo.id} className="photo-container">
-                        <img src={photo.imageUrl} />
-                    </div>
-                ))
-            ) : (<p>No post</p>) }
+                
+                {thumbnails.length > 0 ? (
+                    
+                    thumbnails.map((thumbnail,index) => (
+                        <Link to={`/api/main/${mainId[index]}`} key={mainId[index]} className='photo-container'>
+                            <img src={thumbnail} alt="User Photo" />
+                        </Link>
+
+                    ))
+            ) : (<div className='no-post'>No post</div>) }
             </div>
         </div>
     );
