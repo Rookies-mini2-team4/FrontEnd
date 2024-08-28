@@ -49,29 +49,33 @@ const Profile = () => {
         })
 
         getPhotos(id).then((response) => {
-            setMainId(response.data.mainId);
-            console.log(response.data);
+            
+            if (response.data=='') {
+                setMainId([]);
+                setThumbnails([]);
+            } else {
+                setMainId(response.data.mainId);
 
-            const photoUrls = response.data.imageBytes.map((imageByte) => {
+                const photoUrls = response.data.imageBytes.map((imageByte) => {
 
-                const base64ToUint8Array = (base64) => {
-                    const binaryString = window.atob(base64);
-                    const len = binaryString.length;
-                    const bytes = new Uint8Array(len);
-                    for (let i = 0; i < len; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    return bytes;
-                };
+                    const base64ToUint8Array = (base64) => {
+                        const binaryString = window.atob(base64);
+                        const len = binaryString.length;
+                        const bytes = new Uint8Array(len);
+                        for (let i = 0; i < len; i++) {
+                            bytes[i] = binaryString.charCodeAt(i);
+                        }
+                        return bytes;
+                    };
 
-                const uint8Array = base64ToUint8Array(imageByte);
-                console.log(uint8Array);
-                const blob = new Blob([uint8Array], { type: 'image/jpeg' });
+                    const uint8Array = base64ToUint8Array(imageByte);
+                    console.log(uint8Array);
+                    const blob = new Blob([uint8Array], { type: 'image/jpeg' });
 
-                return URL.createObjectURL(blob);
-            });
-
-            setThumbnails(photoUrls);
+                    return URL.createObjectURL(blob);
+                });
+                setThumbnails(photoUrls);
+            }
         }).catch(error => {
             console.error(error);
         })
@@ -211,13 +215,14 @@ const Profile = () => {
             <div className="profile-photos">
                 
                 {thumbnails.length > 0 ? (
+                    
                     thumbnails.map((thumbnail,index) => (
                         <Link to={`/api/main/${mainId[index]}`} key={mainId[index]} className='photo-container'>
                             <img src={thumbnail} alt="User Photo" />
                         </Link>
 
                     ))
-            ) : (<p>No post</p>) }
+            ) : (<div className='no-post'>No post</div>) }
             </div>
         </div>
     );
