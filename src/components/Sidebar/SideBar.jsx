@@ -93,7 +93,7 @@ const Sidebar = ({ isLoggedIn }) => {
       <nav>
         <ul>
           <li>
-            <NavLink to="/create-room">
+            <NavLink to="/api/main">
               <img src="/Home.png" alt="홈 아이콘" />
               홈
             </NavLink>
@@ -107,7 +107,7 @@ const Sidebar = ({ isLoggedIn }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/api/messages">
+                <NavLink to="/create-room">
                   <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
                   메시지 - 절대 절대로 클릭금지 서버 터짐
                 </NavLink>
