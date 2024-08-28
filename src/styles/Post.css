@@ -1,3 +1,5 @@
+/* /* Post.css */
+
 .post {
     background-color: #fff;
     padding: 20px;
@@ -6,49 +8,72 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.post-content {
-    font-size: 16px;
-    margin-bottom: 20px;
-    line-height: 1.5; /* 가독성을 높이기 위한 줄 간격 추가 */
-    color: #333; /* 텍스트 색상을 약간 더 진하게 설정 */
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-.post-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* 텍스트가 수직으로 정렬되도록 설정 */
+.post-profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-user {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    flex-grow: 1; /* 아이디가 중앙에 위치하도록 */
+}
+
+.post-date {
     font-size: 14px;
     color: #777;
+    text-align: right;
+}
+
+.post-photos {
+    margin-bottom: 20px;
 }
 
 .post-photos img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 20px; /* 이미지와 다음 요소 사이에 간격 추가 */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 이미지에 살짝 그림자 추가 */
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.post-content {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #333;
 }
 
 .post-comments {
     margin-top: 20px;
-    padding-top: 10px; /* 상단에 약간의 패딩 추가 */
-    border-top: 1px solid #eee; /* 댓글 섹션과 본문을 구분하는 선 추가 */
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
 .post-comments h4 {
     margin-bottom: 10px;
-    font-size: 16px; /* 헤딩 크기를 약간 키움 */
-    color: #444; /* 댓글 섹션 헤딩 색상 조정 */
+    font-size: 16px;
+    color: #444;
 }
 
 .post-comments ul {
     padding-left: 20px;
     list-style-type: disc;
-    margin: 0; /* 기본 마진 제거 */
+    margin: 0;
 }
 
 .post-comments li {
     font-size: 14px;
     color: #555;
-    margin-bottom: 5px; /* 각 댓글 사이의 간격 추가 */
+    margin-bottom: 5px;
 }

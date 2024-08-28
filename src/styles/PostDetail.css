@@ -1,27 +1,44 @@
 .post-detail {
-    max-width: 800px;
-    width: 100%; /* 너비를 100%로 설정하여 화면의 대부분을 차지하게 */
-    margin: 0 auto;
-    padding: 20px;
     background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
 }
 
-.post-detail h2 {
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-title {
     font-size: 24px;
+    color: #333;
+    margin: 0;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
-.post-detail p {
+.post-date {
     font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
+    color: #777;
 }
 
-.post-detail img {
-    width: 100%; /* 이미지가 컨텐츠 너비에 맞게 확장되도록 */
+.post-likes {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.post-photos {
+    margin-bottom: 20px;
+}
+
+.post-photos img {
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -29,90 +46,95 @@
 }
 
 .post-comments {
-    margin-top: 30px;
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
 .post-comments h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 12px;
     color: #333;
 }
 
 .post-comments ul {
-    padding-left: 20px;
-    list-style-type: disc;
-    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .post-comments li {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: #444;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
-.post-comments li button {
-    background-color: #007bff;
-    color: white;
+.comment-buttons {
+    display: flex;
+    gap: 5px ; 
+    position: absolute;
+    right: 10px; /* 오른쪽에 고정 */
+    top: 50%;
+    transform: translateY(-50%); 
+}
+
+.post-comments button {
+    background-color: transparent;
     border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
+    color: #007bff;
     cursor: pointer;
     font-size: 12px;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-.post-comments li button:hover {
-    background-color: #0056b3;
+.post-comments button:hover {
+    color: #0056b3;
 }
 
 .add-comment {
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
 }
 
 .add-comment textarea {
     width: 100%;
     padding: 10px;
+    font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
     resize: vertical;
     margin-bottom: 10px;
-    font-size: 14px;
-    color: #555;
 }
 
 .add-comment button {
-    align-self: flex-end;
-    padding: 10px 20px;
+    width: 100%;
+    padding: 10px;
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+    text-align: center;
 }
 
 .add-comment button:hover {
     background-color: #0056b3;
 }
 
-.post-detail button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    margin-right: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.post-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.post-detail button:hover {
-    background-color: #0056b3;
+.post-footer button {
+    padding: 10px 20px;
+    background-color: #444
 }

@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { getImage } from '../../services/PhotoService';
 import '@/styles/Post.css'; // Post 컴포넌트의 스타일을 정의한 CSS 파일
 
+
 const Post = ({ post }) => {
     const navigate = useNavigate();
     const [imageUrls, setImageUrls] = useState([]);
-
+    const profileImageUrl = '/profileImages/defaultProfile.png';
+    
     useEffect(() => {
         if (Array.isArray(post.photos) && post.photos.length > 0) {
             const fetchImages = async () => {
@@ -32,6 +34,7 @@ const Post = ({ post }) => {
             fetchImages();
         }
     }, [post.photos]);
+    
 
     const handleClick = () => {
         navigate(`/api/main/${post.id}`); // 글 ID를 기반으로 상세 조회 페이지로 이동
@@ -39,35 +42,34 @@ const Post = ({ post }) => {
 
     return (
         <div className="post" onClick={handleClick}>
-            <p className="post-content">{post.contents}</p> {/* 게시글의 내용 */}
-            <div className="post-footer">
-                {/* <span className="post-likes">좋아요: {post.likes}</span> 좋아요 개수 */}
+            <div className="post-header">
+                <img src={profileImageUrl} alt="User profile" className="post-profile-image" /> {/* 프로필 사진 */}
+                <span className="post-user">{post.userId}</span> {/* 글 작성자 아이디 */}
                 <span className="post-date">{new Date(post.createdAt).toLocaleDateString()}</span> {/* 작성 날짜 */}
             </div>
             {imageUrls.length > 0 && (
                 <div className="post-photos">
                     {imageUrls.map((url, index) => (
-                        <img key={index} src={url} alt={post.photos[index].caption || 'Uploaded image'} />
+                        <img key={index} src={url} alt={post.photos[index]|| 'Uploaded image'} />
                     ))}
                 </div>
             )}
+            <h3 className="post-content">{post.contents}</h3> {/* 게시글의 내용 */}
             {post.text && post.text.length > 0 && (
                 <div className="post-comments">
-                    <h4>댓글:</h4>
-                    <ul>
-                        {post.text.map((comment, index) => (
-                            <li key={index}>{comment.text}</li> 
-                        ))}
-                    </ul>
+                    <p>댓글 더 보기</p>
                 </div>
             )}
         </div>
     );
 };
 
+
 Post.propTypes = {
     post: PropTypes.shape({
         id: PropTypes.number.isRequired, // id는 필수 항목
+        userId: PropTypes.string.isRequired, // userId는 필수 항목
+        //userName: PropTypes.string.isRequired, // userName은 필수 항목
         contents: PropTypes.string.isRequired, // contents는 필수 항목
         text: PropTypes.arrayOf(PropTypes.shape({
             text: PropTypes.string

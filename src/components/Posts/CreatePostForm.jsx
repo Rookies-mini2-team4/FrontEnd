@@ -47,6 +47,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createPost } from '../../services/MainService'; // 글을 생성하는 API 호출 함수
+import '@/styles/CreatePostForm.css';
 
 const CreatePostForm = ({ onClose }) => {
     const [contents, setContents] = useState('');
@@ -59,6 +60,10 @@ const CreatePostForm = ({ onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (selectedFiles.length === 0) {
+            alert('사진을 선택해주세요.');
+            return;
+        }
 
         // 폼 데이터를 생성하여 파일과 함께 전송
         const formData = new FormData();
@@ -84,9 +89,9 @@ const CreatePostForm = ({ onClose }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="form-createpost" onSubmit={handleSubmit}>
             <div>
-                <label>내용</label>
+                <label></label>
                 <textarea
                     value={contents}
                     onChange={(e) => setContents(e.target.value)}
@@ -96,7 +101,7 @@ const CreatePostForm = ({ onClose }) => {
                 />
             </div>
             <div>
-                <label>사진 선택</label>
+                <label></label>
                 <input
                     type="file"
                     multiple

@@ -29,8 +29,7 @@ const UserHome = () => {
     }, []);
     return (
         <div>
-            <h1>다시 오신 사용자님 반갑습니다!</h1>
-            <p>-Rookiestagram-</p>
+            
             {posts.map(post => (
                 <Post key={post.id} post={post} />
             ))}
