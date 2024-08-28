@@ -13,13 +13,12 @@ export default function Logout() {
                 // 로컬 스토리지에서 토큰 제거
                 localStorage.removeItem('token');
                 // 로그아웃 알림
-                alert('로그아웃 되었습니다!');
+                window.alert('로그아웃 되었습니다!');
                 // 로그인 페이지로 리디렉션
                 navigate('/login');
             } catch (error) {
                 console.error('Logout error:', error);
-                // 로그아웃 오류가 발생하면 알림을 띄우고 로그인 페이지로 이동
-                alert('로그아웃 중 오류가 발생했습니다.');
+                window.alert('로그아웃 중 오류가 발생했습니다.');
                 navigate('/login');
             }
         };
@@ -27,5 +26,5 @@ export default function Logout() {
         handleLogout();
     }, [navigate]);
 
-    return null; // 컴포넌트는 UI를 렌더링하지 않음
+    return null;
 }
