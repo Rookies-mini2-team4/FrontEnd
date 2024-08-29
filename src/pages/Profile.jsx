@@ -223,6 +223,7 @@ const Profile = () => {
 
                     ))
             ) : (<div className='no-post'>No post</div>) }
+            
             </div>
         </div>
     );

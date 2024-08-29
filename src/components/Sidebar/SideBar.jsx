@@ -152,7 +152,7 @@ const Sidebar = ({ isLoggedIn }) => {
 
       {/* 만들기 모달 */}
       <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)}>
-        <h2>만들기</h2>
+        <h5>새 게시물 만들기</h5>
         {/* 만들기 폼을 여기에 추가 */}
         <CreatePostForm onClose={() => setShowCreateModal(false)} />
       </Modal>
