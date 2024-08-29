@@ -47,6 +47,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createPost } from '../../services/MainService'; // 글을 생성하는 API 호출 함수
+import '@/styles/CreatePostForm.css';
 
 const CreatePostForm = ({ onClose }) => {
     const [contents, setContents] = useState('');
@@ -63,6 +64,7 @@ const CreatePostForm = ({ onClose }) => {
             alert('사진을 선택해주세요.');
             return;
         }
+
         // 폼 데이터를 생성하여 파일과 함께 전송
         const formData = new FormData();
         formData.append('post', new Blob([JSON.stringify({ contents })], { type: 'application/json' }));
@@ -93,6 +95,9 @@ const CreatePostForm = ({ onClose }) => {
                 <textarea
                     value={contents}
                     onChange={(e) => setContents(e.target.value)}
+                    required
+                    rows="4"
+                    style={{ width: '100%' }}
                 />
             </div>
             <div>
