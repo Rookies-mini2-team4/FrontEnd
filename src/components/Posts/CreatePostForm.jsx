@@ -59,7 +59,10 @@ const CreatePostForm = ({ onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (selectedFiles.length === 0) {
+            alert('사진을 선택해주세요.');
+            return;
+        }
         // 폼 데이터를 생성하여 파일과 함께 전송
         const formData = new FormData();
         formData.append('post', new Blob([JSON.stringify({ contents })], { type: 'application/json' }));
@@ -84,19 +87,16 @@ const CreatePostForm = ({ onClose }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="form-createpost" onSubmit={handleSubmit}>
             <div>
-                <label>내용</label>
+                <label></label>
                 <textarea
                     value={contents}
                     onChange={(e) => setContents(e.target.value)}
-                    required
-                    rows="4"
-                    style={{ width: '100%' }}
                 />
             </div>
             <div>
-                <label>사진 선택</label>
+                <label></label>
                 <input
                     type="file"
                     multiple
