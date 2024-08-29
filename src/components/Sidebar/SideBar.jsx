@@ -107,9 +107,15 @@ const Sidebar = ({ isLoggedIn }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/create-room">
+                <NavLink to="/api/chat/room">
                   <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
-                  메시지 - 절대 절대로 클릭금지 서버 터짐
+                  메시지 새로 작성
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/api/chat/rooms">
+                  <img src="/Chat Bubbles.png" alt="메시지 아이콘" />
+                  디엠 창 목록 확인
                 </NavLink>
               </li>
               <li>

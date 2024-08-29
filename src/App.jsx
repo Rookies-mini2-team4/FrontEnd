@@ -48,6 +48,7 @@ import ChatRooms from './components/Chat/ChatRooms';
 import ChatRoom from './components/Chat/ChatRoom';  // 개별 채팅방 컴포넌트
 import CreateChatRoom from './components/Chat/CreateChatRoom';
 
+
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -81,10 +82,10 @@ function App() {
                         <Route path="/join/register" element={<Join />} />
 
                         <Route path="api/chat/rooms" element={<ChatRooms />} />  {/* 채팅방 목록 페이지 */}
-                        <Route path="/chat/:chatRoomId" element={<ChatRoomPage />} /> {/* 개별 채팅방 페이지 */}
+                        <Route path="/chat/:chatRoomId" element={<ChatRoomPage />} />
 
 
-                        <Route path="/create-room" element={<CreateChatRoom />} />
+                        <Route path="api/chat/room" element={<CreateChatRoom />} />
 
                         <Route 
                             path="/api/create-post" 
