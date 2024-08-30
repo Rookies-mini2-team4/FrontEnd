@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const REST_API_BASE_URL = "http://localhost:8081/api";
+const REST_API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const COMMENT_REST_API_URL = `${REST_API_BASE_URL}/main/comments`;
 
@@ -14,7 +13,6 @@ export const getCommentById = (id) => {
     },
   });
 };
-
 
 // export const createComment = (comment) => axios.post(`${COMMENT_REST_API_URL}`, comment, {
 //     headers: {

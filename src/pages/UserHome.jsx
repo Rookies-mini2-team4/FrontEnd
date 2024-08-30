@@ -22,6 +22,7 @@ const UserHome = () => {
                 }
             } catch (error) {
                 console.error('Failed to fetch posts:', error);
+                
                 setPosts([]); // 에러 발생 시 빈 배열로 설정
             }
         }

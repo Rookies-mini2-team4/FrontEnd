@@ -13,16 +13,86 @@ const ChatRoom = ({ chatRoomId }) => {
     const stompClientRef = useRef(null);
     const token = localStorage.getItem('jwtToken');
     const sender = ExtractIdFromToken(token); // 현재 사용자 ID
+    const REST_API_BASE_URL = import.meta.env.VITE_API_URL;
+    const REST_API_URL = `${REST_API_BASE_URL}/chat`;
+    console.log("messages" , messages);
+    const styles = {
+        chatContainer: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            padding: '20px',
+            border: '1px solid #ccc',
+            backgroundColor: '#f9f9f9',
+            overflowY: 'auto', // 내용이 많을 경우 스크롤 가능하게
+        },
+        message: {
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: '10px',
+            padding: '10px',
+            borderRadius: '5px',
+            maxWidth: '60%',
+        },
+        profileImage: {
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+        },
+        myMessage: {
+            backgroundColor: '#d1e7dd', // 현재 사용자 메시지 색상
+            alignSelf: 'flex-end', // 오른쪽 정렬
+            flexDirection: 'row-reverse', // 프로필 이미지와 메시지의 위치를 반대로
+        },
+        otherMessage: {
+            backgroundColor: '#f8d7da', // 다른 사용자 메시지 색상
+            alignSelf: 'flex-start', // 왼쪽 정렬
+        },
+        myMessageProfileImage: {
+            marginLeft: '10px', // 오른쪽 메시지에서 이미지가 왼쪽으로 가도록 설정
+        },
+        otherMessageProfileImage: {
+            marginRight: '10px', // 왼쪽 메시지에서 이미지가 오른쪽으로 가도록 설정
+        },
+        messageContent: {
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        textInput: {
+            width: 'calc(100% - 60px)',
+            padding: '10px',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+        },
+        sendButton: {
+            width: '50px',
+            padding: '10px',
+            border: 'none',
+            borderRadius: '5px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            cursor: 'pointer',
+        },
+        sendButtonHover: {
+            backgroundColor: '#0056b3',
+        },
+    };
 
     useEffect(() => {
         const connectWebSocket = () => {
-            const socket = new SockJS('http://localhost:8081/ws');
+            if (stompClientRef.current && stompClientRef.current.connected) {
+                // 이미 연결된 경우 중복 연결 방지
+                console.log("WebSocket is already connected.");
+                return;
+            }
+
+            const socket = new SockJS('http://localhost:8080/ws');
             const stompClient = Stomp.over(socket);
             stompClientRef.current = stompClient;
 
             stompClient.connect({}, () => {
                 console.log('Web Socket Opened...');
-                stompClient.subscribe(`/topic/messages/${chatRoomId}`, (message) => {
+                stompClient.subscribe(`http://localhost:8080/topic/messages/${chatRoomId}`, (message) => {
                     console.log('Message received:', message.body);
                     setMessages(prevMessages => [...prevMessages, JSON.parse(message.body)]);
                 });
@@ -33,7 +103,7 @@ const ChatRoom = ({ chatRoomId }) => {
 
         const fetchRecipientId = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/api/chat/${chatRoomId}/recipient`, {
+                const response = await axios.get(`${REST_API_URL}/${chatRoomId}/recipient`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json"
@@ -47,7 +117,7 @@ const ChatRoom = ({ chatRoomId }) => {
 
         const fetchMessages = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/api/chat/messages/${chatRoomId}`, {
+                const response = await axios.get(`${REST_API_URL}/messages/${chatRoomId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json"
@@ -77,16 +147,17 @@ const ChatRoom = ({ chatRoomId }) => {
             if (newMessage.trim() !== '' && recipient !== null) {
                 const message = {
                     chatRoom: { id: Number(chatRoomId) },
-                    sender: { id: Number(sender) },
-                    recipient: { id: Number(recipient) },
+                    sender: { id: sender },
+                    recipient: { id: recipient },
                     content: newMessage,
                     timestamp: new Date(),
                 };
 
                 console.log("Sending message:", message);
 
-                stompClientRef.current.send(`/app/chat.sendMessage`, {}, JSON.stringify(message));
+                stompClientRef.current.send(`app/chat.sendMessage`, {}, JSON.stringify(message));
 
+                // 메시지를 즉시 상태에 반영하여 사용자 경험 개선
                 setMessages(prevMessages => [...prevMessages, message]);
 
                 setNewMessage('');
@@ -103,34 +174,52 @@ const ChatRoom = ({ chatRoomId }) => {
         }
     };
 
-    const handleKeyDown = (event) => {
+    const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             sendMessage();
         }
     };
 
     return (
-        <div className="chat-container">
+        <div style={styles.chatContainer}>
             {messages.map((msg, index) => (
-                <div 
+                <div
                     key={index}
-                    className={`message ${msg.sender.id === sender ? 'my-message' : 'other-message'}`}
+                    style={{
+                        ...styles.message,
+                        ...(msg.sender.id === sender ? styles.myMessage : styles.otherMessage),
+                    }}
                 >
-                    <div className="message-content">
+                    <img
+                        src={msg.sender.profileImageUrl || 'default-profile.png'}
+                        alt="Profile"
+                        style={{
+                            ...styles.profileImage,
+                            ...(msg.sender.id === sender ? styles.myMessageProfileImage : styles.otherMessageProfileImage),
+                        }}
+                    />
+                    <div style={styles.messageContent}>
                         <strong>{msg.sender.id}:</strong> {msg.content}
                     </div>
                 </div>
             ))}
-            <div className="input-container">
-                <input 
-                    className="text-input"
+            <div style={styles.inputContainer}>
+                <input
+                    style={styles.textInput}
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    onKeyDown={handleKeyDown} // onKeyPress를 onKeyDown으로 변경
+                    onKeyPress={handleKeyPress}
                     placeholder="메시지 입력..."
                     autoFocus
                 />
-                <button className="send-button" onClick={sendMessage}>Send</button>
+                <button
+                    style={styles.sendButton}
+                    onMouseOver={(e) => (e.target.style.backgroundColor = styles.sendButtonHover.backgroundColor)}
+                    onMouseOut={(e) => (e.target.style.backgroundColor = styles.sendButton.backgroundColor)}
+                    onClick={sendMessage}
+                >
+                    Send
+                </button>
             </div>
         </div>
     );

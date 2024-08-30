@@ -48,7 +48,7 @@ export default function Logout() {
         const handleLogout = async () => {
             try {
                 // 서버에 로그아웃 요청 (POST 메서드로 수정)
-                const response = await axiosInstance.post('/api/logout');
+                const response = await axiosInstance.post('/logout');
                 console.log('Logout response:', response); // 응답을 확인
 
                 // 로컬 스토리지에서 토큰 제거

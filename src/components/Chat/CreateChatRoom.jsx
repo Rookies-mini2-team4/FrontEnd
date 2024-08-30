@@ -95,6 +95,8 @@ const CreateChatRoom = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('jwtToken');
     const extractedUserId = ExtractIdFromToken(token);
+    const REST_API_BASE_URL = import.meta.env.VITE_API_URL;
+    const REST_API_URL = `${REST_API_BASE_URL}/chat`;
 
     useEffect(() => {
         if (token && extractedUserId) {
@@ -123,7 +125,7 @@ const CreateChatRoom = () => {
         if (selectedFriend && userId) {
             const users = [userId, selectedFriend];
 
-            axios.post('http://localhost:8081/api/chat/room', 
+            axios.post(`${REST_API_URL}/room`, 
                 { 
                     users: users
                 },

@@ -1,0 +1,59 @@
+/* CreatePostForm 전체 폼 스타일 */
+.form-createpost {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 라벨 스타일 */
+.form-createpost label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 텍스트 에어리어 스타일 (EditPost와 유사하게 설정) */
+.form-createpost textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-family: inherit; /* 상위 폰트 설정을 따릅니다 */
+    background-color: #f9f9f9; /* 어두운 배경을 밝게 변경 */
+    color: #333; /* 텍스트 색상 */
+}
+
+/* 파일 선택 input 스타일 */
+.form-createpost input[type="file"] {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* 제출 버튼 스타일 */
+.form-createpost button[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.form-createpost button[type="submit"]:hover {
+    background-color: #0056b3;
+}

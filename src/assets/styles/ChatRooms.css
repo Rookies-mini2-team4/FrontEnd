@@ -1,0 +1,71 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    overflow-y: scroll;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 60%;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.my-message {
+    background-color: #d1e7dd; /* 현재 사용자 메시지 색상 */
+    align-self: flex-end; /* 오른쪽 정렬 */
+    flex-direction: row-reverse; /* 프로필 이미지와 메시지의 위치를 반대로 */
+}
+
+.other-message {
+    background-color: #f8d7da; /* 다른 사용자 메시지 색상 */
+    align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+.my-message .profile-image {
+    margin-right: 0;
+    margin-left: 10px; /* 오른쪽 메시지에서 이미지가 왼쪽으로 가도록 설정 */
+}
+
+.other-message .profile-image {
+    margin-right: 10px; /* 왼쪽 메시지에서 이미지가 오른쪽으로 가도록 설정 */
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-input {
+    width: calc(100% - 60px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.send-button {
+    width: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}

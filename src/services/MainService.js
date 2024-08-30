@@ -1,9 +1,8 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = "http://localhost:8081/api";
-
+const REST_API_BASE_URL = import.meta.env.VITE_API_URL;
 const REST_API_URL = `${REST_API_BASE_URL}/main`;
-
+console.log(REST_API_BASE_URL);
 export const getAllPosts = () => {
   const token = localStorage.getItem("jwtToken");
   return axios.get(REST_API_URL, {
@@ -12,7 +11,7 @@ export const getAllPosts = () => {
       Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가
     },
   });
-}
+};
 
 //export const getPostById = (id) => axios.get(`${REST_API_URL}/${id}`);
 export const getPostById = (id) => {
@@ -27,9 +26,8 @@ export const getPostById = (id) => {
 
 //export const createPost = (post) => axios.post(`${REST_API_URL}/write`, post);
 export const createPost = (formData) => {
-
   const token = localStorage.getItem("jwtToken");
-  return axios.post(`${REST_API_BASE_URL}/main/write`, formData, {
+  return axios.post(`${REST_API_URL}/write`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 추가

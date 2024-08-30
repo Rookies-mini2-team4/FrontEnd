@@ -63,7 +63,7 @@ const UpdateProfile = () => {
 
         updateProfile(currentId, formData).then((response) => {
             setUser(response.data);
-            navigate(`/api/myprofile`);
+            navigate(`/myprofile`);
         }).catch(error => {
             console.error(error);
         });
@@ -126,6 +126,7 @@ const UpdateProfile = () => {
                     {user.userId}
                 </div>               
                 <button type="submit" className="update-button">Update Profile</button>
+                
             </form>
             
         </div>
@@ -133,3 +134,4 @@ const UpdateProfile = () => {
 };
 
 export default UpdateProfile;
+

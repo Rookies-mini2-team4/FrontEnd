@@ -74,31 +74,31 @@ function App() {
                 <Sidebar isLoggedIn={isLoggedIn} />
                 <div className="main-content">
                     <Routes>
-                        <Route path="/" element={<Navigate to="/api/main" />} />
-                        <Route path="/api/main" element={isLoggedIn ? <UserHome /> : <MainHome />} />
-                        <Route path="/api/main/:id" element={<PostDetail />} />
-                        <Route path="/api/main/update/:id" element={<EditPost />} />
-                        <Route path="/api/login" element={<Login onLogin={handleLogin} />} />
+                        <Route path="/" element={<Navigate to="/main" />} />
+                        <Route path="/main" element={isLoggedIn ? <UserHome /> : <MainHome />} />
+                        <Route path="/main/:id" element={<PostDetail />} />
+                        <Route path="/main/update/:id" element={<EditPost />} />
+                        <Route path="/login" element={<Login onLogin={handleLogin} />} />
                         <Route path="/join/register" element={<Join />} />
 
-                        <Route path="api/chat/rooms" element={<ChatRooms />} />  {/* 채팅방 목록 페이지 */}
+                        <Route path="/chat/rooms" element={<ChatRooms />} />  {/* 채팅방 목록 페이지 */}
                         <Route path="/chat/:chatRoomId" element={<ChatRoomPage />} />
 
 
-                        <Route path="api/chat/room" element={<CreateChatRoom />} />
+                        <Route path="/chat/room" element={<CreateChatRoom />} />
 
                         <Route 
-                            path="/api/create-post" 
+                            path="/create-post" 
                             element={
                                 <ProtectedRoute element={() => <CreatePostForm />} />
                             } 
                         />
                         
-                        <Route path="/api/myprofile" element={<Profile />} />
-                        <Route path="/api/profile/:id" element={<Profile />} />
-                        <Route path="/api/updateProfile" element={<UpdateProfile />} />
-                        <Route path="/api/logout" element={<Logout />} /> {/* 로그아웃 페이지 추가 */}
-                        <Route path="/api/search" element={<Search />} />
+                        <Route path="/myprofile" element={<Profile />} />
+                        <Route path="/profile/:id" element={<Profile />} />
+                        <Route path="/updateProfile" element={<UpdateProfile />} />
+                        <Route path="/logout" element={<Logout />} /> {/* 로그아웃 페이지 추가 */}
+                        <Route path="/search" element={<Search />} />
                     </Routes>
                 </div>
             </div>

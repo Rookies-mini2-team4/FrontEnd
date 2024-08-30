@@ -81,6 +81,8 @@ const CreatePostForm = ({ onClose }) => {
         try {
             await createPost(formData); // 서버로 데이터 전송
             alert('글이 성공적으로 작성되었습니다.');
+            window.location.reload();  // 페이지를 리로드하여 상태를 강제 업데이트
+
             onClose(); // 모달 닫기
         } catch (error) {
             console.error('글 작성에 실패했습니다.', error);
@@ -109,6 +111,7 @@ const CreatePostForm = ({ onClose }) => {
                 />
             </div>
             <button type="submit">작성하기</button>
+            
         </form>
     );
 };

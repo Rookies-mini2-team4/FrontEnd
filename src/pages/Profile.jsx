@@ -11,10 +11,10 @@ const Profile = () => {
     const token = localStorage.getItem('jwtToken');
     // 로그인 방법 바뀌고 나서 수정해야됨!!
     const [currentId, setCurrentId] = useState(null);
-    const currentUserId = ExtractIdFromToken(token);
+    const currentUserName = ExtractIdFromToken(token);
 
     useEffect(() => {
-        getUserId(currentUserId)
+        getUserId(currentUserName)
             .then((response) => {
                 setCurrentId(response.data);
             })
@@ -104,7 +104,7 @@ const Profile = () => {
     const buttonType = () => {
         if(currentId==id){
             return <button className='update-button'>
-                    <Link className='update' to={`/api/updateProfile`}>update profile</Link>
+                    <Link className='update' to={`/updateProfile`}>update profile</Link>
                     </button>
         }else if(followers.some(follower => follower.followerId == currentId)){
             return <button className='follow-button' onClick={handleUnfollow}>unfollow</button>
@@ -183,7 +183,7 @@ const Profile = () => {
                         <div className="dropdown-content">
                             {followers.length > 0 ? (
                                 followers.map(follower => (
-                                    <Link to={`/api/profile/${follower.followerId}`} key={follower.id}>
+                                    <Link to={`/profile/${follower.followerId}`} key={follower.id}>
                                     {follower.followerUserId}
                                     </Link>
                                 ))
@@ -197,7 +197,7 @@ const Profile = () => {
                         <div className="dropdown-content">
                             {followings.length > 0 ? (
                             followings.map(following => (
-                                <Link to={`/api/profile/${following.followingId}`} key={following.id}>
+                                <Link to={`/profile/${following.followingId}`} key={following.id}>
                                 {following.followingUserId}
                                 </Link>
                             ))
@@ -217,7 +217,7 @@ const Profile = () => {
                 {thumbnails.length > 0 ? (
                     
                     thumbnails.map((thumbnail,index) => (
-                        <Link to={`/api/main/${mainId[index]}`} key={mainId[index]} className='photo-container'>
+                        <Link to={`/main/${mainId[index]}`} key={mainId[index]} className='photo-container'>
                             <img src={thumbnail} alt="User Photo" />
                         </Link>
 
@@ -230,3 +230,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

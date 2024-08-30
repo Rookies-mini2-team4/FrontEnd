@@ -1,0 +1,91 @@
+.update-profile {
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+}
+
+.update-profile h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.profile-image {
+    width: 100%;
+    margin-bottom: 40px;
+}
+.profile-image input{
+    display: none;
+}
+
+.profile-image img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-image label {
+    display: block;
+    color: #007bff;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.profile-image input {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.user-id, .user-email {
+    margin: 20px 0;
+    color: #333;
+    text-align: left;
+}
+
+.user-id label, .user-email label {
+    font-weight: bold;
+    color: #777;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-name {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.user-name label {
+    font-weight: bold;
+    color: #777;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-name input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.update-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.update-button:hover {
+    background-color: #0056b3;
+}

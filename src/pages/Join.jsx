@@ -12,6 +12,9 @@ export default function Join() {
     const [errors, setErrors] = useState({});
     const [serverError, setServerError] = useState('');  // 서버 에러 메시지 상태 추가
     const navigate = useNavigate();
+    const REST_API_BASE_URL = import.meta.env.VITE_API_URL;
+
+    const REST_API_URL = `${REST_API_BASE_URL}/join/register`;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +31,7 @@ export default function Join() {
         }
 
         try {
-            const response = await axios.post('http://localhost:8081/api/join/register', {
+            const response = await axios.post(REST_API_URL, {
                 userId: userid, // assuming userId is same as username
                 userName: name,
                 password: password,
@@ -39,7 +42,7 @@ export default function Join() {
 
             if (response.status === 200) {
                 alert("회원가입이 성공했습니다!");
-                navigate('/api/login');
+                navigate('/login');
             }
         } catch (error) {
             if (error.response && error.response.data) {
@@ -63,11 +66,11 @@ export default function Join() {
     };
 
     const handleHomeClick = () => {
-        navigate('/api/main');
+        navigate('/main');
     };
 
     const handleloginClick = () => {
-        navigate('/api/login');
+        navigate('/login');
     };
 
     return (

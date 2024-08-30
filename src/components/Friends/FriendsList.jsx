@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const FriendsList = ({ userId }) => {
+const FriendsList = ({ userId , setFriends}) => {
     const [friends, setFriends] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8081/api/user/${userId}/friends`)
+        fetch(`/user/${userId}/friends`)
             .then(response => response.json())
             .then(data => setFriends(data));
     }, [userId]);

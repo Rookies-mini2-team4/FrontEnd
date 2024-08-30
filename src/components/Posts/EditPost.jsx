@@ -128,7 +128,7 @@ const EditPost = () => {
         
         try {
             await updatePost(id, postData); 
-            navigate(`/api/main`);
+            navigate(`/main`);
         } catch (error) {
             console.error("Error updating post:", error);
         }

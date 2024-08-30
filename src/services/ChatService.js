@@ -1,6 +1,6 @@
 // src/services/ChatService.js
 export const fetchChatRooms = async () => {
-  const response = await fetch("`http://localhost:8081/api/chat/room");
+  const response = await fetch("/chat/room");
   if (!response.ok) {
     throw new Error("Failed to fetch chat rooms");
   }

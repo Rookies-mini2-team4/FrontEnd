@@ -33,7 +33,7 @@ const Search= () => {
         <div className="user-list">
             {users.length > 0 ? (
                 users.map((user) => (
-                    <Link to={`/api/profile/${user.id}`} key={user.id} className="user-item-link">
+                    <Link to={`/profile/${user.id}`} key={user.id} className="user-item-link">
                             <div className="user-item">
                                 <p><strong>{user.userId}</strong> {user.userName}</p>
                             </div>

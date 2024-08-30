@@ -106,13 +106,15 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate(); // useNavigate 훅 초기화
+  const REST_API_BASE_URL = import.meta.env.VITE_API_URL;
 
+  const REST_API_URL = `${REST_API_BASE_URL}/login`;
   // 로그인 폼 제출 처리 함수
   const handleSubmit = async (event) => {
     event.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:8081/api/login', {
+      const response = await fetch(REST_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -153,7 +155,7 @@ function Login({ onLogin }) {
           onLogin(userId); // 사용자 ID를 onLogin에 전달
         }
         alert('로그인 되었습니다!');
-        navigate('/api/main'); // 홈 화면으로 이동
+        navigate('/main'); // 홈 화면으로 이동
       } else {
         throw new Error('No token received');
       }
